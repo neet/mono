@@ -1,51 +1,51 @@
 {
   "lockfile_version": "1",
   "packages": {
-    "bundler@2.5": {
-      "last_modified": "2025-02-23T09:42:26Z",
-      "resolved": "github:NixOS/nixpkgs/2d068ae5c6516b2d04562de50a58c682540de9bf#bundler",
+    "bundler@2.7": {
+      "last_modified": "2025-09-18T16:33:27Z",
+      "resolved": "github:NixOS/nixpkgs/f4b140d5b253f5e2a1ff4e5506edbf8267724bde#bundler",
       "source": "devbox-search",
-      "version": "2.5.22",
+      "version": "2.7.1",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/1bm3a45hjb497l4d424iyvrypkcd1w44-bundler-2.5.22",
+              "path": "/nix/store/vml04alk2sra0aix4b3p5pzskx300zpv-bundler-2.7.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/1bm3a45hjb497l4d424iyvrypkcd1w44-bundler-2.5.22"
+          "store_path": "/nix/store/vml04alk2sra0aix4b3p5pzskx300zpv-bundler-2.7.1"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/k9sw5c0zcidbj2g9naas4nc476qfdwy6-bundler-2.5.22",
+              "path": "/nix/store/zymy0yphzivcd3dyj3mskp2d1pscb547-bundler-2.7.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/k9sw5c0zcidbj2g9naas4nc476qfdwy6-bundler-2.5.22"
+          "store_path": "/nix/store/zymy0yphzivcd3dyj3mskp2d1pscb547-bundler-2.7.1"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/fgvddcr66vkscbdhb4sqr80jkdhx989p-bundler-2.5.22",
+              "path": "/nix/store/1hzm7kvp4kkgg8nzdp19vcb0d7hzgfcy-bundler-2.7.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/fgvddcr66vkscbdhb4sqr80jkdhx989p-bundler-2.5.22"
+          "store_path": "/nix/store/1hzm7kvp4kkgg8nzdp19vcb0d7hzgfcy-bundler-2.7.1"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/s2ms874d5hdxbk1szzfgk3i737i95l3v-bundler-2.5.22",
+              "path": "/nix/store/p9vgmbz70vclpcrx8rl3qdfzhp3p0lfc-bundler-2.7.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/s2ms874d5hdxbk1szzfgk3i737i95l3v-bundler-2.5.22"
+          "store_path": "/nix/store/p9vgmbz70vclpcrx8rl3qdfzhp3p0lfc-bundler-2.7.1"
         }
       }
     },

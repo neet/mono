@@ -3,16 +3,16 @@ current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0
 creating Makefile
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-2ya8a8 sitelibdir\=./.gem.20250926-43340-2ya8a8 clean
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-2ya8a8 sitelibdir\=./.gem.20250926-43340-2ya8a8
 compiling websocket_mask.c
 linking shared-object websocket_mask.bundle
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti install
-install -c -p -m 755 websocket_mask.bundle ./.gem.20250926-26212-9k9tti
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-2ya8a8 sitelibdir\=./.gem.20250926-43340-2ya8a8 install
+install -c -p -m 755 websocket_mask.bundle ./.gem.20250926-43340-2ya8a8
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-2ya8a8 sitelibdir\=./.gem.20250926-43340-2ya8a8 clean

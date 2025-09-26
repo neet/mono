@@ -1,7 +1,7 @@
 {
   "packages": {
     "ruby":       "3.3",
-    "bundler":    "2.5",
+    "bundler":    "2.7",
     "sqlite":     "latest",
     "pkg-config": "latest",
     "libyaml": {

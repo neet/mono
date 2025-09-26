@@ -14,10 +14,10 @@ checking for sys/resource.h... yes
 creating Makefile
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w3duri sitelibdir\=./.gem.20250926-26212-w3duri clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-wi55zm sitelibdir\=./.gem.20250926-43340-wi55zm clean
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w3duri sitelibdir\=./.gem.20250926-26212-w3duri
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-wi55zm sitelibdir\=./.gem.20250926-43340-wi55zm
 compiling bytebuffer.c
 compiling monitor.c
 compiling nio4r_ext.c
@@ -360,8 +360,8 @@ compiling selector.c
 linking shared-object nio4r_ext.bundle
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w3duri sitelibdir\=./.gem.20250926-26212-w3duri install
-install -c -p -m 755 nio4r_ext.bundle ./.gem.20250926-26212-w3duri
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-wi55zm sitelibdir\=./.gem.20250926-43340-wi55zm install
+install -c -p -m 755 nio4r_ext.bundle ./.gem.20250926-43340-wi55zm
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w3duri sitelibdir\=./.gem.20250926-26212-w3duri clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-wi55zm sitelibdir\=./.gem.20250926-43340-wi55zm clean

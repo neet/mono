@@ -13,10 +13,10 @@ checking for whether -DSTR_UMINUS_DEDUPE_FROZEN=1 is accepted as CFLAGS... yes
 creating Makefile
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/msgpack-1.8.0/ext/msgpack
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ahq38g sitelibdir\=./.gem.20250926-26212-ahq38g clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-l9lp67 sitelibdir\=./.gem.20250926-43340-l9lp67 clean
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/msgpack-1.8.0/ext/msgpack
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ahq38g sitelibdir\=./.gem.20250926-26212-ahq38g
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-l9lp67 sitelibdir\=./.gem.20250926-43340-l9lp67
 compiling buffer.c
 compiling buffer_class.c
 compiling extension_value_class.c
@@ -32,8 +32,8 @@ compiling unpacker_ext_registry.c
 linking shared-object msgpack/msgpack.bundle
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/msgpack-1.8.0/ext/msgpack
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ahq38g sitelibdir\=./.gem.20250926-26212-ahq38g install
-install -c -p -m 755 msgpack.bundle ./.gem.20250926-26212-ahq38g/msgpack
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-l9lp67 sitelibdir\=./.gem.20250926-43340-l9lp67 install
+install -c -p -m 755 msgpack.bundle ./.gem.20250926-43340-l9lp67/msgpack
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/msgpack-1.8.0/ext/msgpack
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ahq38g sitelibdir\=./.gem.20250926-26212-ahq38g clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-l9lp67 sitelibdir\=./.gem.20250926-43340-l9lp67 clean

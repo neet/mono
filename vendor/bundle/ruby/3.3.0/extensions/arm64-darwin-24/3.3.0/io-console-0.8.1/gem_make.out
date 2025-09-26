@@ -16,16 +16,16 @@ checking for ttyname_r()... yes
 creating Makefile
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/io-console-0.8.1/ext/io/console
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ys3qai sitelibdir\=./.gem.20250926-26212-ys3qai clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-e2tu48 sitelibdir\=./.gem.20250926-43340-e2tu48 clean
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/io-console-0.8.1/ext/io/console
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ys3qai sitelibdir\=./.gem.20250926-26212-ys3qai
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-e2tu48 sitelibdir\=./.gem.20250926-43340-e2tu48
 compiling console.c
 linking shared-object io/console.bundle
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/io-console-0.8.1/ext/io/console
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ys3qai sitelibdir\=./.gem.20250926-26212-ys3qai install
-install -c -p -m 755 console.bundle ./.gem.20250926-26212-ys3qai/io
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-e2tu48 sitelibdir\=./.gem.20250926-43340-e2tu48 install
+install -c -p -m 755 console.bundle ./.gem.20250926-43340-e2tu48/io
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/io-console-0.8.1/ext/io/console
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-ys3qai sitelibdir\=./.gem.20250926-26212-ys3qai clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-e2tu48 sitelibdir\=./.gem.20250926-43340-e2tu48 clean

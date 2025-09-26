@@ -10,16 +10,16 @@ checking for cpuid.h... no
 creating Makefile
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/json-2.15.0/ext/json/ext/parser
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-xltimo sitelibdir\=./.gem.20250926-26212-xltimo clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-a076m0 sitelibdir\=./.gem.20250926-43340-a076m0 clean
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/json-2.15.0/ext/json/ext/parser
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-xltimo sitelibdir\=./.gem.20250926-26212-xltimo
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-a076m0 sitelibdir\=./.gem.20250926-43340-a076m0
 compiling parser.c
 linking shared-object json/ext/parser.bundle
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/json-2.15.0/ext/json/ext/parser
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-xltimo sitelibdir\=./.gem.20250926-26212-xltimo install
-install -c -p -m 755 parser.bundle ./.gem.20250926-26212-xltimo/json/ext
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-a076m0 sitelibdir\=./.gem.20250926-43340-a076m0 install
+install -c -p -m 755 parser.bundle ./.gem.20250926-43340-a076m0/json/ext
 
 current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/json-2.15.0/ext/json/ext/parser
-make DESTDIR\= sitearchdir\=./.gem.20250926-26212-xltimo sitelibdir\=./.gem.20250926-26212-xltimo clean
+make DESTDIR\= sitearchdir\=./.gem.20250926-43340-a076m0 sitelibdir\=./.gem.20250926-43340-a076m0 clean
