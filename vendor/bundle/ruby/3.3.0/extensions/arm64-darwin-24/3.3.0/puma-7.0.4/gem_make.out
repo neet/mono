@@ -1,0 +1,25 @@
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/puma-7.0.4/ext/puma_http11
+/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9/bin/ruby extconf.rb
+checking for pkg-config for openssl... not found
+checking for BIO_read() in -llibcrypto... no
+checking for BIO_read() in -lcrypto... no
+checking for BIO_read() in -llibeay32... no
+** Puma will be compiled without SSL support
+creating Makefile
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/puma-7.0.4/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-sd9w8p sitelibdir\=./.gem.20250926-26212-sd9w8p clean
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/puma-7.0.4/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-sd9w8p sitelibdir\=./.gem.20250926-26212-sd9w8p
+compiling http11_parser.c
+compiling mini_ssl.c
+compiling puma_http11.c
+linking shared-object puma/puma_http11.bundle
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/puma-7.0.4/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-sd9w8p sitelibdir\=./.gem.20250926-26212-sd9w8p install
+install -c -p -m 755 puma_http11.bundle ./.gem.20250926-26212-sd9w8p/puma
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/puma-7.0.4/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-sd9w8p sitelibdir\=./.gem.20250926-26212-sd9w8p clean

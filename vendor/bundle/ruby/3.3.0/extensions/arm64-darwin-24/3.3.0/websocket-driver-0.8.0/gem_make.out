@@ -1,0 +1,18 @@
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti clean
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti install
+install -c -p -m 755 websocket_mask.bundle ./.gem.20250926-26212-9k9tti
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-9k9tti sitelibdir\=./.gem.20250926-26212-9k9tti clean

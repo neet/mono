@@ -1,0 +1,19 @@
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/debug-1.11.0/ext/debug
+/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250926-30298-gx22i9 sitelibdir\=./.gem.20250926-30298-gx22i9 clean
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250926-30298-gx22i9 sitelibdir\=./.gem.20250926-30298-gx22i9
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250926-30298-gx22i9 sitelibdir\=./.gem.20250926-30298-gx22i9 install
+install -c -p -m 755 debug.bundle ./.gem.20250926-30298-gx22i9/debug
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250926-30298-gx22i9 sitelibdir\=./.gem.20250926-30298-gx22i9 clean

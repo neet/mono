@@ -1,0 +1,394 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "bundler@2.5": {
+      "last_modified": "2025-02-23T09:42:26Z",
+      "resolved": "github:NixOS/nixpkgs/2d068ae5c6516b2d04562de50a58c682540de9bf#bundler",
+      "source": "devbox-search",
+      "version": "2.5.22",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1bm3a45hjb497l4d424iyvrypkcd1w44-bundler-2.5.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1bm3a45hjb497l4d424iyvrypkcd1w44-bundler-2.5.22"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k9sw5c0zcidbj2g9naas4nc476qfdwy6-bundler-2.5.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/k9sw5c0zcidbj2g9naas4nc476qfdwy6-bundler-2.5.22"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fgvddcr66vkscbdhb4sqr80jkdhx989p-bundler-2.5.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fgvddcr66vkscbdhb4sqr80jkdhx989p-bundler-2.5.22"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/s2ms874d5hdxbk1szzfgk3i737i95l3v-bundler-2.5.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/s2ms874d5hdxbk1szzfgk3i737i95l3v-bundler-2.5.22"
+        }
+      }
+    },
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2025-09-25T01:21:52Z",
+      "resolved": "github:NixOS/nixpkgs/e57b3b16ad8758fd681511a078f35c416a8cc939?lastModified=1758763312&narHash=sha256-puBMviZhYlqOdUUgEmMVJpXqC%2FToEqSvkyZ30qQ09xM%3D"
+    },
+    "libyaml@latest": {
+      "last_modified": "2025-09-18T16:33:27Z",
+      "resolved": "github:NixOS/nixpkgs/f4b140d5b253f5e2a1ff4e5506edbf8267724bde#libyaml",
+      "source": "devbox-search",
+      "version": "0.2.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9m9h3bs4nxibpv3qss4gzl9qhn7fdrhg-libyaml-0.2.5",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/alv50py6jqrpjs41i6c3a6g9kmwg7ng3-libyaml-0.2.5-dev"
+            }
+          ],
+          "store_path": "/nix/store/9m9h3bs4nxibpv3qss4gzl9qhn7fdrhg-libyaml-0.2.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wmdfyp1w1032zdw17ifh6ki4x125546s-libyaml-0.2.5",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/nb8wdgf1rbbmakp3z8vz5qawwnsh775c-libyaml-0.2.5-dev"
+            }
+          ],
+          "store_path": "/nix/store/wmdfyp1w1032zdw17ifh6ki4x125546s-libyaml-0.2.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/id8zfkklgwy9b61cjs2m01fmrg7549b8-libyaml-0.2.5",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/9xv2d8hjf67fg3q7bxjgqrzx8m9dfzr5-libyaml-0.2.5-dev"
+            }
+          ],
+          "store_path": "/nix/store/id8zfkklgwy9b61cjs2m01fmrg7549b8-libyaml-0.2.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/gyw5srqpib1mxn0adqwxjk0cx0bm6b5s-libyaml-0.2.5",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/9znggncplwn7dard3vzw0k41x579cdh1-libyaml-0.2.5-dev"
+            }
+          ],
+          "store_path": "/nix/store/gyw5srqpib1mxn0adqwxjk0cx0bm6b5s-libyaml-0.2.5"
+        }
+      }
+    },
+    "pkg-config@latest": {
+      "last_modified": "2025-09-18T16:33:27Z",
+      "resolved": "github:NixOS/nixpkgs/f4b140d5b253f5e2a1ff4e5506edbf8267724bde#pkg-config",
+      "source": "devbox-search",
+      "version": "0.29.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yc7mj2h6kh2cm4h61v57c5qmycaq4x2z-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/r6x4gpvw55ymlg0ydja45y51sswd7l02-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/q2jppw401lp8jb37qsylzgyiqsarkbc6-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/yc7mj2h6kh2cm4h61v57c5qmycaq4x2z-pkg-config-wrapper-0.29.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/gbpsba382jc93zzvwkiqkwrgdfvjr2s0-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/z3snkc308vvd71rpjzqnw1wmsw3jfwvg-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/2yz6sk7bhph65d9yi1vzhr224l1w6c46-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/gbpsba382jc93zzvwkiqkwrgdfvjr2s0-pkg-config-wrapper-0.29.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/za7iazvgg64cs4gmshnk540mjf5yxm9f-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/07sqw1xpw1gznq4xaf6z1rzr4a0n80ds-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/6rv8pn0v4rs6sml3j85q27zli4kwx8y0-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/za7iazvgg64cs4gmshnk540mjf5yxm9f-pkg-config-wrapper-0.29.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/05h9vfzhqf7l6w1xczixici2ldw9y788-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/4acmnq9dq7zd6rbpi3wigrkflxjcnr1c-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/68zbqzd61ciynfa9jx3gm9ncfy4z22sa-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/05h9vfzhqf7l6w1xczixici2ldw9y788-pkg-config-wrapper-0.29.2"
+        }
+      }
+    },
+    "ruby@3.3": {
+      "last_modified": "2025-09-18T16:33:27Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/f4b140d5b253f5e2a1ff4e5506edbf8267724bde#ruby",
+      "source": "devbox-search",
+      "version": "3.3.9",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/c87jvm51yx1wyabjcmlfncrx24j48n1z-ruby-3.3.9-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6avvhisrha25x9p438lhq0pln019bc7q-ruby-3.3.9",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/izqvjzd7nmh7yjwkdsi95kc9bjf34mwp-ruby-3.3.9-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/6avvhisrha25x9p438lhq0pln019bc7q-ruby-3.3.9"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/54iz5i3x0m6x3brr9dfy2pj92qfr2lkn-ruby-3.3.9",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/0r6dfj6n0hj9lw6sqwgr961pgxr6qy6r-ruby-3.3.9-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/54iz5i3x0m6x3brr9dfy2pj92qfr2lkn-ruby-3.3.9"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mp4rpz283gw3abvxyb4lbh4vp9pmayp2-ruby-3.3.9",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/mhaqxxmavvvsy6p2vb1qi3s02z1d2315-ruby-3.3.9-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/mp4rpz283gw3abvxyb4lbh4vp9pmayp2-ruby-3.3.9"
+        }
+      }
+    },
+    "sqlite@latest": {
+      "last_modified": "2025-09-21T09:21:16Z",
+      "resolved": "github:NixOS/nixpkgs/a1f79a1770d05af18111fbbe2a3ab2c42c0f6cd0#sqlite",
+      "source": "devbox-search",
+      "version": "3.50.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/p0psb5n8drhajc6n4wnsrh2azd03jsqn-sqlite-3.50.2-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/ibpff13m0z1p13c4ja4xy30y1s1cz62r-sqlite-3.50.2-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/27nl2zmsbzgraliqqq17ni8fnmjywmwh-sqlite-3.50.2-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/5s3gy78khnksmsdhyydvb491hdbn6bpa-sqlite-3.50.2-doc"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/vrhjlpnqn999pk2j95pj9inzxk12dzxg-sqlite-3.50.2"
+            }
+          ],
+          "store_path": "/nix/store/p0psb5n8drhajc6n4wnsrh2azd03jsqn-sqlite-3.50.2-bin"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/yd01f2fjd6y2lpp8fl4hzfrnq06cfy2a-sqlite-3.50.2-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/wprban33nylff5i6iqx77dfkbn4lvm9n-sqlite-3.50.2-man",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/f9wgl8w9ii4xnmjwd2jd0j7s3i8i0pzs-sqlite-3.50.2-debug"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/ji7px8qbhrhh605mvb7r4kjn1h7h7dg7-sqlite-3.50.2-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/wa1kpf071q5jzldwsr0rdzfayv8qgf9p-sqlite-3.50.2-doc"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/jfwxk186hyci41lsdqf8al9yan74fhbf-sqlite-3.50.2"
+            }
+          ],
+          "store_path": "/nix/store/yd01f2fjd6y2lpp8fl4hzfrnq06cfy2a-sqlite-3.50.2-bin"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/1q2wqd0i9ilpi73vmbfiivf05dy52scd-sqlite-3.50.2-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/609xfl1kjv0xfsyyasxbzf9z79b5q31n-sqlite-3.50.2-man",
+              "default": true
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/4p78h6p38kl2ll62b6yng6kayp4s9i4k-sqlite-3.50.2"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/w3kr2anjs9sykivsyyn5r083y2k2z8x6-sqlite-3.50.2-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/3gmj7kj39n5k12k68rr1rpxibbj1jcng-sqlite-3.50.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/1q2wqd0i9ilpi73vmbfiivf05dy52scd-sqlite-3.50.2-bin"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/gmwaym3dwkrb9987z8xg4njl2kmm2dvc-sqlite-3.50.2-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/zz6jiqqcqd6pzv5hxnzsmkci0d29acpy-sqlite-3.50.2-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/w3ibvzff0yrpg8abrl8n2fxn0d9fpfpc-sqlite-3.50.2-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/ikqa14lw7sky0vmjxi0h8sjngzd139pg-sqlite-3.50.2-doc"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/8bsyjdxv61ha88hjrpgl6nyfjxfqnphx-sqlite-3.50.2"
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/k3729psg2d70xv1ms96pg9xv6plmaxva-sqlite-3.50.2-debug"
+            }
+          ],
+          "store_path": "/nix/store/gmwaym3dwkrb9987z8xg4njl2kmm2dvc-sqlite-3.50.2-bin"
+        }
+      }
+    }
+  }
+}

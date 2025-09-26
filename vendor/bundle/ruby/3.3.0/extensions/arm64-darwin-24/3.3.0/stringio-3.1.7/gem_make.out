@@ -1,0 +1,19 @@
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.7/ext/stringio
+/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9/bin/ruby extconf.rb
+checking for rb_io_mode_t in ruby/io.h... no
+creating Makefile
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w2ke1z sitelibdir\=./.gem.20250926-26212-w2ke1z clean
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w2ke1z sitelibdir\=./.gem.20250926-26212-w2ke1z
+compiling stringio.c
+linking shared-object stringio.bundle
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w2ke1z sitelibdir\=./.gem.20250926-26212-w2ke1z install
+install -c -p -m 755 stringio.bundle ./.gem.20250926-26212-w2ke1z
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-w2ke1z sitelibdir\=./.gem.20250926-26212-w2ke1z clean

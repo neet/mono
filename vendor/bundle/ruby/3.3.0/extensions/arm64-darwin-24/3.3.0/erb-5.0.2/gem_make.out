@@ -1,0 +1,19 @@
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+/nix/store/b2jray7ww0d2640z53kdzs5kpp9m3zh7-ruby-3.3.9/bin/ruby extconf.rb
+checking for rb_ext_ractor_safe() in ruby.h... yes
+creating Makefile
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-198pbx sitelibdir\=./.gem.20250926-26212-198pbx clean
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-198pbx sitelibdir\=./.gem.20250926-26212-198pbx
+compiling escape.c
+linking shared-object erb/escape.bundle
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-198pbx sitelibdir\=./.gem.20250926-26212-198pbx install
+install -c -p -m 755 escape.bundle ./.gem.20250926-26212-198pbx/erb
+
+current directory: /Users/neet/ghq/github.com/neet/mono/vendor/bundle/ruby/3.3.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250926-26212-198pbx sitelibdir\=./.gem.20250926-26212-198pbx clean

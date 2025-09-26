@@ -1,0 +1,12 @@
+{
+  "packages": {
+    "ruby":       "3.3",
+    "bundler":    "2.5",
+    "sqlite":     "latest",
+    "pkg-config": "latest",
+    "libyaml": {
+      "version": "latest",
+      "outputs": ["dev", "out"]
+    }
+  }
+}
