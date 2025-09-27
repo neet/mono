@@ -49,4 +49,3 @@ class Api::V1::TasksController < ApplicationController
       params.expect(task: [ :title, :note, :complete ])
     end
 end
-
