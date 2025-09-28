@@ -7,6 +7,10 @@
     "libyaml": {
       "version": "latest",
       "outputs": ["dev", "out"]
-    }
+    },
+    "zlib":       "latest",
+    "readline":   "latest",
+    "openssl":    "latest",
+    "postgresql": "latest"
   }
 }
