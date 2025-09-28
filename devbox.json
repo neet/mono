@@ -8,8 +8,9 @@
       "version": "latest",
       "outputs": ["dev", "out"]
     },
-    "zlib":     "latest",
-    "readline": "latest",
-    "openssl":  "latest"
+    "zlib":       "latest",
+    "readline":   "latest",
+    "openssl":    "latest",
+    "postgresql": "latest"
   }
 }
