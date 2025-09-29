@@ -4,13 +4,16 @@ class Api::V1::TasksController < ApplicationController
 
   # GET /api/v1/tasks
   def index
-    if params[:completed]
-      @tasks = current_user.tasks.where(completed: true).order(created_at: :desc)
-    else
-      @tasks = current_user.tasks.where(completed: false).order(created_at: :desc)
+    tasks = current_user.tasks
+
+    if params.key?(:completed)
+      completed = ActiveModel::Type::Boolean.new.cast(params[:completed])
+      tasks = tasks.where(completed: completed)
     end
 
-    render json: @tasks
+    tasks = tasks.order(created_at: :desc)
+
+    render json: tasks
   end
 
   # GET /api/v1/tasks/1
