@@ -4,7 +4,11 @@ class Api::V1::TasksController < ApplicationController
 
   # GET /api/v1/tasks
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    if params[:completed]
+      @tasks = current_user.tasks.where(completed: true).order(created_at: :desc)
+    else
+      @tasks = current_user.tasks.where(completed: false).order(created_at: :desc)
+    end
 
     render json: @tasks
   end
