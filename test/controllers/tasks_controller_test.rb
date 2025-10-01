@@ -3,34 +3,35 @@ require "test_helper"
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @task = tasks(:one)
+    post sessions_path, params: { email: "one@example.com", password: "password" }
   end
 
   test "should get index" do
-    get tasks_url, as: :json
+    get api_v1_tasks_url, as: :json
     assert_response :success
   end
 
   test "should create task" do
     assert_difference("Task.count") do
-      post tasks_url, params: { task: { completed: @task.completed, description: @task.description, title: @task.title } }, as: :json
+      post api_v1_tasks_url, params: { task: { completed: @task.completed, description: @task.description, title: @task.title } }, as: :json
     end
 
     assert_response :created
   end
 
   test "should show task" do
-    get task_url(@task), as: :json
+    get api_v1_task_url(@task), as: :json
     assert_response :success
   end
 
   test "should update task" do
-    patch task_url(@task), params: { task: { completed: @task.completed, description: @task.description, title: @task.title } }, as: :json
+    patch api_v1_task_url(@task), params: { task: { completed: @task.completed, description: @task.description, title: @task.title } }, as: :json
     assert_response :success
   end
 
   test "should destroy task" do
     assert_difference("Task.count", -1) do
-      delete task_url(@task), as: :json
+      delete api_v1_task_url(@task), as: :json
     end
 
     assert_response :no_content

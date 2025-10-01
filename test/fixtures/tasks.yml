@@ -4,8 +4,10 @@ one:
   title: MyString
   description: MyString
   completed: false
+  user: one
 
 two:
   title: MyString
   description: MyString
   completed: false
+  user: one

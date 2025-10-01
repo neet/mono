@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :sessions, only: [:create, :destroy]
+  resources :sessions, only: [ :create, :destroy ]
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create, :show]
+      resources :users, only: [ :create, :show ]
       resources :tasks
     end
   end
