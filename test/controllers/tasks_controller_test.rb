@@ -1,37 +1,39 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
-
-  test "should list tasks" do
-    sign_in users(:one)
-    get api_v1_tasks_path
-    assert_response :success
-    assert_equal [], response.parsed_body
+  setup do
+    @task = tasks(:one)
+    post sessions_path, params: { email: "one@example.com", password: "password" }
   end
 
-  test "should create a task" do
-    sign_in users(:one)
-    post api_v1_tasks_path, params: { task: { title: "新しいタスク" } }
+  test "should get index" do
+    get api_v1_tasks_url, as: :json
     assert_response :success
-    assert_equal "新しいタスク", response.parsed_body["title"]
   end
 
-  test "should update a task" do
-    sign_in users(:one)
-    post api_v1_tasks_path, params: { task: { title: "新しいタスク" } }
-    task_id = response.parsed_body["id"]
-    put api_v1_task_path(task_id), params: { task: { title: "新しいタスク2" } }
-    assert_response :success
-    assert_equal "新しいタスク2", response.parsed_body["title"]
+  test "should create task" do
+    assert_difference("Task.count") do
+      post api_v1_tasks_url, params: { task: { completed: @task.completed, description: @task.description, title: @task.title } }, as: :json
+    end
+
+    assert_response :created
   end
 
-  test "should delete a task" do
-    sign_in users(:one)
-    post api_v1_tasks_path, params: { task: { title: "新しいタスク" } }
-    task_id = response.parsed_body["id"]
-    delete api_v1_task_path(task_id)
-    get api_v1_task_path(task_id)
-    assert_response :missing
+  test "should show task" do
+    get api_v1_task_url(@task), as: :json
+    assert_response :success
+  end
+
+  test "should update task" do
+    patch api_v1_task_url(@task), params: { task: { completed: @task.completed, description: @task.description, title: @task.title } }, as: :json
+    assert_response :success
+  end
+
+  test "should destroy task" do
+    assert_difference("Task.count", -1) do
+      delete api_v1_task_url(@task), as: :json
+    end
+
+    assert_response :no_content
   end
 end

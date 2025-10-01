@@ -1,3 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost %>
+
 one:
-  email: test@example.com
-  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  email: one@example.com
+  password_digest: <%= BCrypt::Password.create("password", cost: cost) %>
+
+two:
+  email: two@example.com
+  password_digest: <%= BCrypt::Password.create("password", cost: cost) %>

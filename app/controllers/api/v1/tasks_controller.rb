@@ -1,8 +1,7 @@
-class Api::V1::TasksController < Api::BaseController
-  before_action :authenticate_user!
+class Api::V1::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
-  # GET /api/v1/tasks
+  # GET /tasks
   def index
     tasks = current_user.tasks
 
@@ -16,12 +15,12 @@ class Api::V1::TasksController < Api::BaseController
     render json: tasks
   end
 
-  # GET /api/v1/tasks/1
+  # GET /tasks/1
   def show
     render json: @task
   end
 
-  # POST /api/v1/tasks
+  # POST /tasks
   def create
     @task = current_user.tasks.new(task_params)
 
@@ -32,7 +31,7 @@ class Api::V1::TasksController < Api::BaseController
     end
   end
 
-  # PATCH/PUT /api/v1/tasks/1
+  # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
       render json: @task
@@ -41,16 +40,18 @@ class Api::V1::TasksController < Api::BaseController
     end
   end
 
-  # DELETE /api/v1/tasks/1
+  # DELETE /tasks/1
   def destroy
     @task.destroy!
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = current_user.tasks.find(params[:id])
     end
 
+    # Only allow a list of trusted parameters through.
     def task_params
       params.expect(task: [ :title, :description, :completed ])
     end
