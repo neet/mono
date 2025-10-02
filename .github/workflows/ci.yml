@@ -3,12 +3,14 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: api
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,12 +20,16 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+          working-directory: api
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,6 +39,7 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+          working-directory: api
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
@@ -68,8 +75,10 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+          working-directory: api
 
       - name: Run tests
+        working-directory: api
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432

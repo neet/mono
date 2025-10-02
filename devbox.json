@@ -1,16 +1,17 @@
 {
   "packages": {
-    "ruby":       "3.3",
-    "bundler":    "2.7",
-    "sqlite":     "latest",
+    "ruby": "3.3",
+    "bundler": "2.7",
+    "sqlite": "latest",
     "pkg-config": "latest",
     "libyaml": {
       "version": "latest",
       "outputs": ["dev", "out"]
     },
-    "zlib":       "latest",
-    "readline":   "latest",
-    "openssl":    "latest",
-    "postgresql": "latest"
+    "zlib": "latest",
+    "readline": "latest",
+    "openssl": "latest",
+    "postgresql": "latest",
+    "nodejs": "latest"
   }
 }
