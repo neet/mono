@@ -5,12 +5,8 @@ class Api::V1::TasksController < ApplicationController
   def index
     tasks = current_user.tasks
 
-    if params.key?(:completed)
-      completed = ActiveModel::Type::Boolean.new.cast(params[:completed])
-      tasks = tasks.where(completed: completed)
-    end
-
-    tasks = tasks.order(created_at: :desc)
+    # TODO: restore ?completed handling
+    tasks = tasks.order(completed: :asc, created_at: :desc)
 
     render json: tasks
   end
