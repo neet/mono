@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_01_034838) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_03_132256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "habits", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "rrule", null: false
+    t.datetime "dtstart", null: false
+    t.string "tzid", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_habits_on_user_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "title", default: "", null: false
@@ -21,6 +33,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_034838) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "habit_id"
+    t.index ["habit_id"], name: "index_tasks_on_habit_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
