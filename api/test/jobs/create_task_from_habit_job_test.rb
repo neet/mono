@@ -4,10 +4,10 @@ class CreateTaskFromHabitJobTest < ActiveJob::TestCase
   test "creates a task from a habit" do
     habit = habits(:one)
 
-    CreateTaskFromHabitJob.perform_later(habit)
+    CreateTaskFromHabitJob.perform_later(habit.id)
     perform_enqueued_jobs
 
     assert_equal habit.tasks.count, 1
-    assert_enqueued_with job: CreateTaskFromHabitJob, args: [habit], at: habit.next_occurrence_at
+    assert_enqueued_with job: CreateTaskFromHabitJob, args: [habit.id], at: habit.next_occurrence_at
   end
 end

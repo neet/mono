@@ -9,11 +9,12 @@ class Habit < ApplicationRecord
   after_commit :enqueue, on: :create
   
   def enqueue
+    puts "next_occurrence_at #{next_occurrence_at}"
     return if next_occurrence_at.nil?
 
     CreateTaskFromHabitJob
       .set(wait_until: next_occurrence_at)
-      .perform_later(self)
+      .perform_later(self.id)
   end
 
   def find_last_occurrence 
@@ -22,7 +23,8 @@ class Habit < ApplicationRecord
 
   def next_occurrence_at
     now = Time.zone.now
-    recurrences = RRule::Rule.new(rrule, dtstart: dtstart, tzid: tzid)
+    # tzid要らなかった気がする。dtstartがISO時刻で初期化されるならタイムゾーンが入っているはず
+    recurrences = RRule::Rule.new(rrule, dtstart: dtstart)
     # FIXME: Support annual or more rare occurrence
     occurrence_at = recurrences.between(now, now + 1.year).first
   end
