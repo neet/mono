@@ -20,14 +20,14 @@ class Habit < ApplicationRecord
     tasks.order(created_at: :desc).first
   end
 
-  private
-    def next_occurrence_at
-      now = Time.zone.now
-      recurrences = RRule::Rule.new(rrule, dtstart: dtstart, tzid: tzid)
-      # FIXME: Support annual or more rare occurrence
-      occurrence_at = recurrences.between(now, now + 1.year).first
-    end
+  def next_occurrence_at
+    now = Time.zone.now
+    recurrences = RRule::Rule.new(rrule, dtstart: dtstart, tzid: tzid)
+    # FIXME: Support annual or more rare occurrence
+    occurrence_at = recurrences.between(now, now + 1.year).first
+  end
 
+  private
     def validate_rrule
       begin
         RRule::Rule.new rrule

@@ -3,9 +3,15 @@
 one:
   title: MyString
   description: MyString
-  rrule: MyString
+  rrule: FREQ=DAILY;COUNT=3
+  dtstart: <%= Time.current %>
+  tzid: Asia/Tokyo
+  user: one
 
 two:
   title: MyString
   description: MyString
-  rrule: MyString
+  rrule: FREQ=DAILY;COUNT=3
+  dtstart: <%= Time.current %>
+  tzid: Asia/Tokyo
+  user: one
