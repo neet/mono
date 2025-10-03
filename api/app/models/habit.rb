@@ -2,43 +2,44 @@ class Habit < ApplicationRecord
   belongs_to :user
   has_many :tasks, dependent: :destroy
 
-  validate :rrule_must_be_valid
-  validate :timezone_exists
+  validate :validate_rrule
+  validate :validate_timezone
+
+  # Currently we don't support updating habit
+  after_commit :enqueue, on: :create
+  
+  def enqueue
+    return if next_occurrence_at.nil?
+
+    CreateTaskFromHabitJob
+      .set(wait_until: next_occurrence_at)
+      .perform_later(self)
+  end
 
   def find_last_occurrence 
     tasks.order(created_at: :desc).first
   end
 
-  def spawn
-    last_occurrence = find_last_occurrence
-
-    if last_occurrence.nil? || (last_occurrence.present? && last_occurrence.completed?)
-      tasks.build(
-        user: user,
-        title: title,
-        description: description
-      )
-    else
-      nil
+  private
+    def next_occurrence_at
+      now = Time.zone.now
+      recurrences = RRule::Rule.new(rrule, dtstart: dtstart, tzid: tzid)
+      # FIXME: Support annual or more rare occurrence
+      occurrence_at = recurrences.between(now, now + 1.year).first
     end
-  end
 
-  def next_occurrence_at
-    RRule::Rule.new(rrule, dtstart: dtstart, tzid: tzid).first
-  end
-
-  def rrule_must_be_valid
-    begin
-      RRule::Rule.new rrule
-    rescue RRule::InvalidRRule
-      errors.add(:rrule, "is malformed")
+    def validate_rrule
+      begin
+        RRule::Rule.new rrule
+      rescue RRule::InvalidRRule
+        errors.add(:rrule, "is malformed")
+      end
     end
-  end
 
-  # https://stackoverflow.com/questions/31792295/validating-a-time-zone-is-valid-in-rails
-  def timezone_exists
-    if !ActiveSupport::TimeZone[tzid].present?
-      errors.add(:tzid, "does not exist")
+    def validate_timezone
+      # https://stackoverflow.com/questions/31792295/validating-a-time-zone-is-valid-in-rails
+      if !ActiveSupport::TimeZone[tzid].present?
+        errors.add(:tzid, "does not exist")
+      end
     end
-  end
 end
