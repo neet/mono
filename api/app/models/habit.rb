@@ -7,7 +7,7 @@ class Habit < ApplicationRecord
 
   after_commit :enqueue, on: [ :create, :update ], if: :rrule_or_tzid_changed?
 
-  def recur!
+  def recur
     last = tasks.order(created_at: :desc).first
 
     if last.nil? || last.completed?
@@ -24,8 +24,13 @@ class Habit < ApplicationRecord
   end
 
   def next_recur_at
-    rule = RRule::Rule.new(rrule, tzid: tzid, dtstart: Time.current + 1.second)
-    rule.first
+    rule = RRule::Rule.new(rrule, tzid: tzid, dtstart: created_at)
+
+    # RRule::Rule#fromがちゃんと動いてくれない。
+    # limitが適用されるのがfromよりも前なので、イテレーションの回数を指定しないと正しい結果が帰ってこない
+    # RRuleの最長の反復周期が1年（FREQ=YEARLY）なので、べつにこれでいいか…
+    t = Time.current
+    rule.between(t + 1.second, t + 1.year).first
   end
 
   def fingerprint
