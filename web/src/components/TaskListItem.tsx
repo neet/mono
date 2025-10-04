@@ -29,7 +29,7 @@ export const TaskListItem: FC<TaskListItemProps> = (props) => {
         <button type="submit" className={
           clsx(
             "cursor-pointer",
-            task.completed && "bg-[#20DA91] rounded border-2 p-0.5",
+            task.completed && "bg-emerald-500 rounded border-2 p-0.5",
             !task.completed && "rounded border-2 p-0.5"
           )
         }>

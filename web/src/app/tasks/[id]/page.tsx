@@ -60,7 +60,7 @@ export default async function TasksIdPage(props: Props) {
         {task.title}
       </h1>
 
-      <p className="text-zinc-600 text-sm mt-1 font-mono">
+      <p className="text-stone-500 text-sm mt-1 font-mono">
         {timestamp}
       </p>
 
@@ -139,7 +139,7 @@ export default async function TasksIdPage(props: Props) {
 
           <button
             type="submit"
-            className="bg-[#F55FFF] px-3 py-1 border-2 border-e-8 border-b-8 border-black"
+            className="bg-emerald-500 px-3 py-1 border-2 border-e-8 border-b-8 border-black"
           >
             保存
           </button>

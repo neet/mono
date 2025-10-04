@@ -21,10 +21,10 @@ export default function RootLayout(props: Readonly<Props>) {
   return (
     <ViewTransition name="auto">
       <html lang="ja">
-        <body className="">
+        <body className="bg-amber-100">
           <Banner />
 
-          <main className="lg:max-w-lg mx-auto px-2">
+          <main className="lg:max-w-lg mx-auto px-2 my-4">
             {children}
           </main>
         </body>

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { Task } from "./models/task";
+import { Habit } from "./models/habit";
 import { notFound, redirect } from "next/navigation";
 
 const request = async <T>(
@@ -126,6 +127,41 @@ const createSession = async (params: CreateSessionParams) => {
   return http.post("/api/v1/sessions", params);
 };
 
+const listHabits = (): Promise<Habit[]> => {
+  return http.get<Habit[]>("/api/v1/habits");
+}
+
+const getHabit = (id: string): Promise<Habit> => {
+  return http.get<Habit>(`/api/v1/habits/${id}`);
+}
+
+type CreateHabitParams = {
+  readonly rrule: string;
+  readonly tzid: string;
+  readonly title?: string;
+  readonly description?: string;
+};
+
+const createHabit = (params: CreateHabitParams): Promise<Habit> => {
+  return http.post(`/api/v1/habits`, params);
+};
+
+type UpdateHabitParams = {
+  readonly rrule?: string;
+  readonly tzid?: string;
+  readonly title?: string;
+  readonly description?: string;
+};
+
+const updateHabit = (id: string, params: UpdateHabitParams): Promise<Task> => {
+  return http.put(`/api/v1/habits/${id}`, params);
+};
+
+const removeHabit = (id: string): Promise<void> => {
+  return http.delete(`/api/v1/habits/${id}`);
+};
+
+
 export const api = {
   session: {
     create: createSession,
@@ -137,4 +173,11 @@ export const api = {
     remove: removeTask,
     update: updateTask,
   },
+  habits: {
+    get: getHabit,
+    list: listHabits,
+    create: createHabit,
+    remove: removeHabit,
+    update: updateHabit,
+  }
 };
