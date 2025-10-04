@@ -15,8 +15,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_03_132256) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "habits", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
+    t.string "title", default: "", null: false
+    t.string "description", default: "", null: false
     t.string "rrule", null: false
     t.string "tzid", null: false
     t.bigint "user_id"

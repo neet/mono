@@ -11,14 +11,12 @@ class Habit < ApplicationRecord
     last = tasks.order(created_at: :desc).first
 
     if last.nil? || last.completed?
-      # FIXME: 書き方キモい
-      attrs = {
+      task = tasks.build(
         user: user,
         title: title,
         description: description
-      }.compact
+      )
 
-      task = tasks.build(attrs)
       task.save!
     end
 
@@ -26,24 +24,21 @@ class Habit < ApplicationRecord
   end
 
   def next_recur_at
-    recurrences.first
+    rule = RRule::Rule.new(rrule, tzid: tzid, dtstart: Time.current + 1.second)
+    rule.first
   end
 
-  def fingerprint 
-    Digest::SHA256.hexdigest([rrule, tzid].join("\x00"))
+  def fingerprint
+    Digest::SHA256.hexdigest([ rrule, tzid ].join("\x00"))
   end
 
   private
-    def recurrences
-      RRule::Rule.new rrule, tzid: tzid
-    end
-
     def rrule_or_tzid_changed?
       saved_change_to_rrule? || saved_change_to_tzid?
     end
 
     def validate_rrule
-      recurrences
+      RRule::Rule.new(rrule, tzid: tzid)
     rescue RRule::InvalidRRule
       errors.add(:rrule, "is malformed")
     end
