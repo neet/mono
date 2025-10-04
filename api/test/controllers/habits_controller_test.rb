@@ -13,7 +13,7 @@ class HabitsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create habit" do
     assert_difference("Habit.count") do
-      post api_v1_habits_url, params: { habit: { description: @habit.description, rrule: @habit.rrule, title: @habit.title, dtstart: @habit.dtstart, tzid: @habit.tzid } }, as: :json
+      post api_v1_habits_url, params: { habit: { description: @habit.description, rrule: @habit.rrule, title: @habit.title, tzid: @habit.tzid } }, as: :json
     end
 
     assert_response :created
@@ -25,7 +25,7 @@ class HabitsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update habit" do
-    patch api_v1_habit_url(@habit), params: { habit: { description: @habit.description, rrule: @habit.rrule, title: @habit.title, dtstart: @habit.dtstart, tzid: @habit.tzid } }, as: :json
+    patch api_v1_habit_url(@habit), params: { habit: { description: @habit.description, rrule: @habit.rrule, title: @habit.title, tzid: @habit.tzid } }, as: :json
     assert_response :success
   end
 

@@ -18,7 +18,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_03_132256) do
     t.string "title"
     t.string "description"
     t.string "rrule", null: false
-    t.datetime "dtstart", null: false
     t.string "tzid", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false

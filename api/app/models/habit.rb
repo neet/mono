@@ -3,13 +3,12 @@ class Habit < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   validate :validate_rrule
-  validate :validate_timezone
+  validate :validate_tzid
 
   # Currently we don't support updating habit
   after_commit :enqueue, on: :create
   
   def enqueue
-    puts "next_occurrence_at #{next_occurrence_at}"
     return if next_occurrence_at.nil?
 
     CreateTaskFromHabitJob
@@ -22,14 +21,14 @@ class Habit < ApplicationRecord
   end
 
   def next_occurrence_at
-    now = Time.zone.now
-    # tzid要らなかった気がする。dtstartがISO時刻で初期化されるならタイムゾーンが入っているはず
-    recurrences = RRule::Rule.new(rrule, dtstart: dtstart)
-    # FIXME: Support annual or more rare occurrence
-    occurrence_at = recurrences.between(now, now + 1.year).first
+    recurrences.first
   end
 
   private
+    def recurrences
+      return RRule::Rule.new rrule, tzid: tzid
+    end
+
     def validate_rrule
       begin
         RRule::Rule.new rrule
@@ -38,7 +37,7 @@ class Habit < ApplicationRecord
       end
     end
 
-    def validate_timezone
+    def validate_tzid
       # https://stackoverflow.com/questions/31792295/validating-a-time-zone-is-valid-in-rails
       if !ActiveSupport::TimeZone[tzid].present?
         errors.add(:tzid, "does not exist")

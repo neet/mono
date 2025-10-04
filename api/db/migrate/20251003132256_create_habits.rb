@@ -5,8 +5,7 @@ class CreateHabits < ActiveRecord::Migration[8.0]
       t.string :description
 
       t.string :rrule, null: false
-      t.datetime :dtstart, null: false
-      t.string :tzid, null: false
+      t.string :tzid,  null: false
 
       t.belongs_to :user
 

@@ -46,6 +46,6 @@ class Api::V1::HabitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def habit_params
-      params.expect(habit: [ :title, :description, :rrule, :tzid, :dtstart ])
+      params.expect(habit: [ :title, :description, :rrule, :tzid ])
     end
 end
