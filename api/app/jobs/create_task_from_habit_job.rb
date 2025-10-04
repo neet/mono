@@ -1,24 +1,11 @@
 class CreateTaskFromHabitJob < ApplicationJob
   queue_as :default
 
-  def perform(habit_id)
+  def perform(habit_id, habit_fingerprint)
     habit = Habit.find(habit_id)
-    return if habit.nil?
 
-    last_occurrence = habit.find_last_occurrence
-
-    if last_occurrence.nil? || last_occurrence.completed?
-      # FIXME: 書き方キモい
-      attrs = {
-        user: habit.user,
-        title: habit.title,
-        description: habit.description
-      }.compact
-
-      task = habit.tasks.build(attrs)
-      task.save!
+    if habit.present? && habit.fingerprint == habit_fingerprint
+      habit.recur!
     end
-
-    habit.enqueue
   end
 end
