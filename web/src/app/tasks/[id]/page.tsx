@@ -5,6 +5,8 @@ import { api } from "@/api";
 import { Task } from "@/models/task";
 import clsx from "clsx";
 import { CheckIcon } from "@heroicons/react/16/solid";
+import { Button } from "@/components/Button";
+import { Controller } from "@/components/Controller";
 
 type Props = {
   params: Promise<{
@@ -25,7 +27,9 @@ export default async function TasksIdPage(props: Props) {
   const { id } = await props.params;
   const task: Task = await api.tasks.get(id);
 
-  const timestamp = new Intl.DateTimeFormat("ja-JP").format(new Date(task.created_at));
+  const timestamp = new Intl.DateTimeFormat("ja-JP").format(
+    new Date(task.created_at)
+  );
 
   const update = async (fd: FormData) => {
     "use server";
@@ -60,45 +64,33 @@ export default async function TasksIdPage(props: Props) {
         {task.title}
       </h1>
 
-      <p className="text-stone-500 text-sm mt-1 font-mono">
-        {timestamp}
-      </p>
+      <p className="text-stone-600 dark:text-stone-400 text-sm mt-1 font-mono">{timestamp}</p>
 
       <form action={update} className="mt-3 space-y-2">
-        <div className="border-2 border-e-8 border-b-8 rounded">
-          <label
-            htmlFor="title"
-            className="block border-dashed border-b-2 p-2 text-sm font-bold"
-          >
-            タイトル
-          </label>
-          <input
-            id="title"
-            name="title"
-            defaultValue={task.title}
-            className="w-full p-2"
-          />
-        </div>
+        <Controller id="title" label="タイトル">
+          {(props) => (
+            <input
+              {...props}
+              name="title"
+              defaultValue={task.title}
+              className="w-full p-2"
+            />
+          )}
+        </Controller>
 
-        <div className="border-2 border-e-8 border-b-8 rounded">
-          <label
-            htmlFor="description"
-            className="block border-dashed border-b-2 p-2 text-sm font-bold"
-          >
-            説明文
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            defaultValue={task.description}
-            className="w-full p-2"
-          />
-        </div>
+        <Controller id="description" label="説明文">
+          {(props) => (
+            <textarea
+              {...props}
+              name="description"
+              defaultValue={task.description}
+              className="w-full p-2"
+            />
+          )}
+        </Controller>
 
         <div>
-          <label
-            style={{ display: "flex", gap: "0.25em", alignItems: "center" }}
-          >
+          <label className="flex gap-1 items-center">
             <input
               type="checkbox"
               name="completed"
@@ -106,21 +98,23 @@ export default async function TasksIdPage(props: Props) {
               className="sr-only size-4 peer"
             />
 
-            <div aria-hidden className={
-              clsx(
+            <div
+              aria-hidden
+              className={clsx(
                 "hidden peer-checked:block",
-                "cursor-pointer border-2 p-0.5 rounded bg-[#20DA91]",
-              )
-            }>
+                "cursor-pointer border-2 p-0.5 rounded bg-emerald-400 dark:bg-emerald-600"
+              )}
+            >
               <CheckIcon className="size-4" />
             </div>
 
-            <div aria-hidden className={
-              clsx(
+            <div
+              aria-hidden
+              className={clsx(
                 "block peer-checked:hidden",
-                "cursor-pointer border-2 p-0.5 rounded",
-              )
-            }>
+                "cursor-pointer border-2 p-0.5 rounded"
+              )}
+            >
               <div className="size-4" />
             </div>
 
@@ -129,20 +123,13 @@ export default async function TasksIdPage(props: Props) {
         </div>
 
         <div className="flex justify-end gap-2">
-          <button
-            type="submit"
-            form="remover"
-            className="px-3 py-1 border-2 border-e-8 border-b-8 border-black"
-          >
+          <Button type="submit" form="remover">
             削除
-          </button>
+          </Button>
 
-          <button
-            type="submit"
-            className="bg-emerald-500 px-3 py-1 border-2 border-e-8 border-b-8 border-black"
-          >
+          <Button type="submit" variant="primary">
             保存
-          </button>
+          </Button>
         </div>
       </form>
 

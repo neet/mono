@@ -28,30 +28,19 @@ export default async function Home() {
 
   return (
     <div className="space-y-3">
-      <nav>
-        <ul className="flex gap-4 text-sm">
-          <li>
-            <Link href="/" className="underline">タスク</Link>
-          </li>
-          <li>
-            <Link href="/habits" className="underline">習慣</Link>
-          </li>
-        </ul>
-      </nav>
-
       <form
         action={create}
-        className="border-2 border-e-8 border-b-8 rounded p-2 flex"
+        className="border-2 rounded p-2 flex"
       >
         <input
           id="new-task"
           type="text"
           name="title"
-          className="block grow placeholder-stone-500"
+          className="block grow placeholder-stone-600 dark:placeholder-stone-400"
           placeholder="新しいタスク"
         />
 
-        <button className="bg-black p-1 text-white rounded">
+        <button className="bg-black p-1 text-white rounded dark:bg-white dark:text-black">
           <PlusIcon className="size-4" />
         </button>
       </form>

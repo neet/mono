@@ -15,7 +15,6 @@ export function parse(rrule: string): RRule {
   const result: RRule = {};
 
   const entries = rrule.split(";");
-  console.log(entries);
   for (const entry of entries) {
     const [key, value] = entry.split("=");
     switch (key) {
@@ -50,8 +49,6 @@ export function parse(rrule: string): RRule {
 
 export function toLocaleString(rrule: RRule, _locale = "ja") {
   let localeString = "";
-
-  console.log(rrule);
 
   switch (rrule.freq) {
     case "DAILY":

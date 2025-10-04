@@ -1,28 +1,15 @@
 import { api } from "@/api";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
-import { Habit } from "@/models/habit";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-type Props = {
-  params: Promise<{ id: string }>;
+export const metadata: Metadata = {
+  title: "新規作成",
 };
 
-export const generateMetadata = async (props: Props): Promise<Metadata> => {
-  const { id } = await props.params;
-  const habit: Habit = await api.habits.get(id);
-
-  return {
-    title: habit.title,
-  };
-};
-
-export default async function HabitPage(props: Props) {
-  const { id } = await props.params;
-  const habit = await api.habits.get(id);
-
-  const update = async (fd: FormData) => {
+export default async function New() {
+  const create = async (fd: FormData) => {
     "use server";
     const title = fd.get("title");
     const description = fd.get("description");
@@ -42,26 +29,15 @@ export default async function HabitPage(props: Props) {
       return;
     }
 
-    await api.habits.update(id, { title, description, rrule, tzid });
-    redirect("/habits");
-  };
-
-  const remove = async () => {
-    "use server";
-    await api.habits.remove(id);
+    await api.habits.create({ title, description, rrule, tzid });
     redirect("/habits");
   };
 
   return (
     <div className="space-y-3">
-      <h2
-        className="font-bold text-xl"
-        style={{ viewTransitionName: `habit-${habit.id}-title` }}
-      >
-        {habit.title}
-      </h2>
+      <h2 className="font-bold text-xl">新規作成</h2>
 
-      <form className="mt-3 space-y-2" action={update}>
+      <form className="mt-3 space-y-2" action={create}>
         <div className="space-y-1 rounded">
           <Controller label="タイトル" id="title">
             {(props) => (
@@ -69,7 +45,6 @@ export default async function HabitPage(props: Props) {
                 {...props}
                 type="text"
                 name="title"
-                defaultValue={habit.title}
               />
             )}
           </Controller>
@@ -79,7 +54,6 @@ export default async function HabitPage(props: Props) {
               <textarea
                 {...props}
                 name="description"
-                defaultValue={habit.description}
               />
             )}
           </Controller>
@@ -93,7 +67,6 @@ export default async function HabitPage(props: Props) {
                 required
                 autoCorrect="false"
                 spellCheck="false"
-                defaultValue={habit.rrule}
               />
             )}
           </Controller>
@@ -105,24 +78,17 @@ export default async function HabitPage(props: Props) {
                 type="text"
                 name="tzid"
                 required
-                defaultValue={habit.tzid}
               />
             )}
           </Controller>
         </div>
 
         <div className="flex justify-end gap-2">
-          <Button type="submit" form="remover">
-            削除
-          </Button>
-
           <Button type="submit" variant="primary">
             保存
           </Button>
         </div>
       </form>
-
-      <form id="remover" action={remove} />
     </div>
   );
 }
