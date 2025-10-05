@@ -13,8 +13,8 @@ export const TaskList: FC<TaskProps > = (props) => {
   const { tasks, className } = props;
 
   return (
-    <div className={clsx("border-2 border-black rounded", className)}>
-      <div className="divide-black divide-dashed divide-y-2">
+    <div className={clsx("border-2 rounded", className)}>
+      <div className="divide-dashed divide-y-2">
         {tasks.map((task) => (
           <TaskListItem className="p-2" key={task.id} task={task} />
         ))}

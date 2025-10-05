@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  rrule: FREQ=DAILY;COUNT=3
+  tzid: Asia/Tokyo
+  user: one
+
+two:
+  title: MyString
+  description: MyString
+  rrule: FREQ=DAILY;COUNT=3
+  tzid: Asia/Tokyo
+  user: one
