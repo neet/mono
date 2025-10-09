@@ -38,3 +38,5 @@ group :development, :test do
 end
 
 gem "rrule", "~> 0.6.0"
+
+gem "ruby-lsp", "~> 0.26.1", group: :development
