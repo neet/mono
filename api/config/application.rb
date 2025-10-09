@@ -44,7 +44,7 @@ module Mono
     # https://guides.rubyonrails.org/api_app.html
     config.session_store :cookie_store,
       key: "_mono_session",
-      expires_after: 14.days,
+      expire_after: 14.days,
       secure: Rails.env.production?,
       httponly: true,
       same_site: :lax
