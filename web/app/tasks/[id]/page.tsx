@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import clsx from "clsx";
 
 import { api } from "@/api";
 import { Task } from "@/models/task";
-import clsx from "clsx";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
+import { TextareaAutosize } from "@/components/TextareaAutosize"
 
 type Props = {
   params: Promise<{
@@ -80,7 +81,7 @@ export default async function TasksIdPage(props: Props) {
 
         <Controller id="description" label="説明文">
           {(props) => (
-            <textarea
+            <TextareaAutosize
               {...props}
               name="description"
               defaultValue={task.description}
@@ -120,6 +121,7 @@ export default async function TasksIdPage(props: Props) {
 
             <div>完了済み</div>
           </label>
+
         </div>
 
         <div className="flex justify-end gap-2">

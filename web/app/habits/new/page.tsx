@@ -1,8 +1,10 @@
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+
 import { api } from "@/api";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
-import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { TextareaAutosize } from "@/components/TextareaAutosize"
 
 export const metadata: Metadata = {
   title: "新規作成",
@@ -51,7 +53,7 @@ export default async function New() {
 
           <Controller label="説明" id="description">
             {(props) => (
-              <textarea
+              <TextareaAutosize
                 {...props}
                 name="description"
               />
