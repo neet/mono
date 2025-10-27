@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { Task } from "./models/task";
+import { Task, TaskStatus } from "./models/task";
 import { Habit } from "./models/habit";
 import { notFound, redirect } from "next/navigation";
 
@@ -84,7 +84,6 @@ const http = {
 // -----------------------------------------------------------------------------
 
 type ListTasksParams = {
-  readonly completed?: boolean;
 };
 
 const listTasks = (params: ListTasksParams = {}): Promise<Task[]> => {
@@ -107,7 +106,7 @@ const createTask = (params: CreateTaskParams): Promise<Task> => {
 type UpdateTaskParams = {
   readonly title?: string;
   readonly description?: string;
-  readonly completed?: boolean;
+  readonly status?: string;
 };
 
 const updateTask = (id: string, params: UpdateTaskParams): Promise<Task> => {

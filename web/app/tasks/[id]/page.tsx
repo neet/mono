@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import clsx from "clsx";
 
 import { api } from "@/api";
 import { Task } from "@/models/task";
-import { CheckIcon } from "@heroicons/react/16/solid";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
 import { TextareaAutosize } from "@/components/TextareaAutosize"
@@ -36,17 +34,19 @@ export default async function TasksIdPage(props: Props) {
     "use server";
     const title = fd.get("title");
     const description = fd.get("description");
-    const completed = fd.get("completed") === "on";
+    const status = fd.get("status");
 
     if (typeof title !== "string") {
       return;
     }
-
     if (typeof description !== "string") {
       return;
     }
+    if (typeof status !== "string") {
+      return;
+    }
 
-    await api.tasks.update(id, { title, description, completed });
+    await api.tasks.update(id, { title, description, status });
     redirect("/");
   };
 
@@ -67,14 +67,29 @@ export default async function TasksIdPage(props: Props) {
 
       <p className="text-stone-600 dark:text-stone-400 text-sm mt-1 font-mono">{timestamp}</p>
 
-      <form action={update} className="mt-3 space-y-2">
+      <form action={update} className="mt-3 space-y-4">
+        <Controller id="status" label="ステータス">
+          {(props) => (
+            <select
+              {...props}
+              name="status"
+              defaultValue={task.status}
+              className="block px-2 py-1 border-2 rounded"
+            >
+              <option value="pending">進行中</option>
+              <option value="completed">完了</option>
+              <option value="canceled">取消</option>
+            </select>
+          )}
+        </Controller>
+
         <Controller id="title" label="タイトル">
           {(props) => (
             <input
               {...props}
               name="title"
               defaultValue={task.title}
-              className="w-full p-2"
+              className="w-full p-2 border-2 rounded"
             />
           )}
         </Controller>
@@ -85,44 +100,10 @@ export default async function TasksIdPage(props: Props) {
               {...props}
               name="description"
               defaultValue={task.description}
-              className="w-full p-2"
+              className="w-full p-2 border-2 rounded"
             />
           )}
         </Controller>
-
-        <div>
-          <label className="flex gap-1 items-center">
-            <input
-              type="checkbox"
-              name="completed"
-              defaultChecked={task.completed}
-              className="sr-only size-4 peer"
-            />
-
-            <div
-              aria-hidden
-              className={clsx(
-                "hidden peer-checked:block",
-                "cursor-pointer border-2 p-0.5 rounded bg-emerald-400 dark:bg-emerald-600"
-              )}
-            >
-              <CheckIcon className="size-4" />
-            </div>
-
-            <div
-              aria-hidden
-              className={clsx(
-                "block peer-checked:hidden",
-                "cursor-pointer border-2 p-0.5 rounded"
-              )}
-            >
-              <div className="size-4" />
-            </div>
-
-            <div>完了済み</div>
-          </label>
-
-        </div>
 
         <div className="flex justify-end gap-2">
           <Button type="submit" form="remover">

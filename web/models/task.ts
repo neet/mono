@@ -1,8 +1,14 @@
+export type TaskStatus
+  = "pending"
+  | "completed"
+  | "canceled"
+  ;
+
 export interface Task {
   id: string;
   title: string;
   description: string;
-  completed: boolean;
+  status: TaskStatus;
   created_at: string;
   updated_at: string;
 }

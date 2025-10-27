@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const tasks = await api.tasks.list({ completed: false });
+  const tasks = await api.tasks.list();
 
   const create = async (fd: FormData) => {
     "use server";

@@ -5,8 +5,7 @@ class Api::V1::TasksController < ApplicationController
   def index
     tasks = current_user.tasks
 
-    # TODO: restore ?completed handling
-    tasks = tasks.order(completed: :asc, created_at: :desc)
+    tasks = tasks.order(status: :asc, created_at: :desc)
 
     render json: tasks
   end
@@ -49,6 +48,6 @@ class Api::V1::TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :title, :description, :completed ])
+      params.expect(task: [ :title, :description, :status ])
     end
 end
