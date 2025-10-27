@@ -72,6 +72,7 @@ export default async function HabitPage(props: Props) {
                 type="text"
                 name="title"
                 defaultValue={habit.title}
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>
@@ -82,6 +83,7 @@ export default async function HabitPage(props: Props) {
                 {...props}
                 name="description"
                 defaultValue={habit.description}
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>
@@ -96,6 +98,7 @@ export default async function HabitPage(props: Props) {
                 autoCorrect="false"
                 spellCheck="false"
                 defaultValue={habit.rrule}
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>
@@ -108,6 +111,7 @@ export default async function HabitPage(props: Props) {
                 name="tzid"
                 required
                 defaultValue={habit.tzid}
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>

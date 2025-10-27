@@ -47,6 +47,7 @@ export default async function New() {
                 {...props}
                 type="text"
                 name="title"
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>
@@ -56,6 +57,7 @@ export default async function New() {
               <TextareaAutosize
                 {...props}
                 name="description"
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>
@@ -69,6 +71,7 @@ export default async function New() {
                 required
                 autoCorrect="false"
                 spellCheck="false"
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>
@@ -80,6 +83,7 @@ export default async function New() {
                 type="text"
                 name="tzid"
                 required
+                className="w-full p-2 border-2 rounded"
               />
             )}
           </Controller>

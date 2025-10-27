@@ -2,7 +2,7 @@ import { FC } from "react";
 import clsx from "clsx";
 import { revalidatePath } from "next/cache";
 import { Task } from "@/models/task";
-import { CheckIcon } from "@heroicons/react/16/solid";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { api } from "@/api";
 import Link from "next/link";
 
@@ -16,26 +16,38 @@ export const TaskListItem: FC<TaskListItemProps> = (props) => {
 
   const complete = async (fd: FormData) => {
     "use server";
-    const completed = fd.get("completed") === "on";
-    await api.tasks.update(task.id, { completed });
+    const status = fd.get("status");
+
+    if (typeof status !== "string") {
+      return;
+    }
+
+    await api.tasks.update(task.id, { status });
     revalidatePath("/");
   };
+
+  const nextStatus = task.status === "pending"
+    ? "completed"
+    : "pending";
 
   return (
     <div className={clsx("flex gap-2 items-center", className)} style={{ viewTransitionName: `task-${task.id}` }}>
       <form action={complete} className="contents">
-        <input type="hidden" name="completed" value={task.completed ? "off" : "on"} />
+        <input type="hidden" name="status" value={nextStatus} />
 
         <button type="submit" className={
           clsx(
             "cursor-pointer",
-            task.completed && "bg-emerald-400 dark:bg-emerald-600 rounded border-2 p-0.5",
-            !task.completed && "rounded border-2 p-0.5"
+            (task.status === "completed" || task.status === "canceled") && "bg-emerald-400 dark:bg-emerald-600 rounded border-2 p-0.5",
+            task.status === "pending" && "rounded border-2 p-0.5"
           )
         }>
           <div className="size-4">
             {
-              task.completed && <CheckIcon />
+              task.status === "completed" && <CheckIcon />
+            }
+            {
+              task.status === "canceled" && <XMarkIcon />
             }
           </div>
           

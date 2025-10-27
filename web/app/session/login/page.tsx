@@ -48,7 +48,7 @@ export default function LoginPage() {
             id="email"
             name="email"
             type="email"
-            className="w-full p-2"
+            className="w-full p-2 border-2 rounded"
             autoComplete="email"
           />
         </div>
@@ -64,7 +64,7 @@ export default function LoginPage() {
             id="password"
             name="password"
             type="password"
-            className="w-full p-2"
+            className="w-full p-2 border-2 rounded"
             autoComplete="current-password"
           />
         </div>
