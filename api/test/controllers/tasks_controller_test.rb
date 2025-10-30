@@ -7,7 +7,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get api_v1_tasks_url, as: :json
+    get api_v1_tasks_url, params: { status: "pending" }, as: :json
     assert_response :success
   end
 

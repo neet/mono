@@ -58,14 +58,45 @@ const request = async <T>(
   }
 
   return await res.json();
+}
+const isRecord = (x: unknown): x is Record<string, unknown> =>
+  typeof x === "object" && x !== null && x.constructor.name === "Object";
+
+const flatten = (object: unknown, parent = ""): [string, unknown][] => {
+  if (Array.isArray(object)) {
+    return object.flatMap((value, i) =>
+      flatten(
+        value,
+        parent === "" ? i.toString() : `${parent}[]`,
+      ),
+    );
+  }
+
+  if (isRecord(object)) {
+    return Object.entries(object).flatMap(([key, value]) =>
+      flatten(value, parent === "" ? key : `${parent}[${key}]`)
+    );
+  }
+
+  return [[parent, object]];
 };
+
+const stringifyUrl = (object: unknown) => {
+  return flatten(object)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+    .join("&");
+}
 
 const http = {
   get: <T>(
     path: string,
     searchParams?: Record<string, unknown>
   ): Promise<T> => {
-    return request<T>("GET", path, searchParams);
+    if (searchParams && Object.keys(searchParams).length > 0) {
+      return request<T>("GET", `${path}?${stringifyUrl(searchParams)}`);
+    } else {
+      return request<T>("GET", path);
+    }
   },
 
   post: <T>(path: string, body?: Record<string, unknown>): Promise<T> => {
@@ -84,6 +115,7 @@ const http = {
 // -----------------------------------------------------------------------------
 
 type ListTasksParams = {
+  readonly status?: TaskStatus | readonly TaskStatus[];
 };
 
 const listTasks = (params: ListTasksParams = {}): Promise<Task[]> => {
