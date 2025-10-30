@@ -90,7 +90,11 @@ const http = {
     path: string,
     searchParams?: Record<string, unknown>
   ): Promise<T> => {
-    return request<T>("GET", `${path}?${stringifyUrl(searchParams)}`);
+    if (searchParams && Object.keys(searchParams).length > 0) {
+      return request<T>("GET", `${path}?${stringifyUrl(searchParams)}`);
+    } else {
+      return request<T>("GET", path);
+    }
   },
 
   post: <T>(path: string, body?: Record<string, unknown>): Promise<T> => {
