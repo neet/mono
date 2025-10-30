@@ -82,7 +82,9 @@ const flatten = (object: unknown, parent = ""): [string, unknown][] => {
 };
 
 const stringifyUrl = (object: unknown) => {
-  return flatten(object).map(([key, value]) => `${key}=${value}`).join("&");
+  return flatten(object)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+    .join("&");
 }
 
 const http = {
