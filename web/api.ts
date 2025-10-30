@@ -67,7 +67,7 @@ const flatten = (object: unknown, parent = ""): [string, unknown][] => {
     return object.flatMap((value, i) =>
       flatten(
         value,
-        parent == "" ? i.toString() : `${parent}[]`,
+        parent === "" ? i.toString() : `${parent}[]`,
       ),
     );
   }
