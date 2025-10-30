@@ -5,7 +5,11 @@ class Api::V1::TasksController < ApplicationController
   def index
     tasks = current_user.tasks
 
-    tasks = tasks.order(status: :asc, created_at: :desc)
+    if params[:status]
+      tasks = tasks.where(status: params[:status])
+    end
+
+    tasks = tasks.order(created_at: :desc)
 
     render json: tasks
   end
