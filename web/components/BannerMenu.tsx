@@ -29,7 +29,7 @@ export const BannerMenu: FC<BannerMenuProps> = (props) => {
         className="absolute top-0 left-0 backdrop:backdrop-blur-md backdrop:bg-black/70 bg-transparent p-2 w-full h-full max-w-full max-h-full"
         onClick={handleClick}
       >
-        <Complementary className="bg-amber-50 dark:bg-slate-950 dark:text-white rounded border-2" />
+        <Complementary className="bg-amber-50 dark:bg-zinc-950 dark:text-white rounded border-2" />
       </dialog>
     </>
   )

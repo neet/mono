@@ -8,7 +8,7 @@ export type TabBarProps = {
 }
 
 const LINK_CLASS = "w-full py-1 text-center hover:underline"
-const LINK_ACTIVE_CLASS = "bg-slate-950 text-white dark:text-black dark:bg-amber-50"
+const LINK_ACTIVE_CLASS = "bg-zinc-950 text-white dark:text-black dark:bg-amber-50"
 
 export const TabBar: FC<TabBarProps> = (props) => {
   const { pending, className } = props;

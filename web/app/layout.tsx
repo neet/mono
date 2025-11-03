@@ -22,7 +22,7 @@ export default function RootLayout(props: Readonly<Props>) {
   return (
     <ViewTransition name="auto">
       <html lang="ja">
-        <body className="h-full bg-amber-50 dark:bg-slate-950 dark:text-white">
+        <body className="h-full bg-amber-50 dark:bg-zinc-950 dark:text-white">
           <div className="flex h-full">
             <aside className="hidden md:block border-r-2 w-[200px]">
               <Complementary />
