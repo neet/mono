@@ -6,6 +6,7 @@ import { Task } from "@/models/task";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
 import { TextareaAutosize } from "@/components/TextareaAutosize"
+import { revalidatePath } from "next/cache";
 
 type Props = {
   params: Promise<{
@@ -47,7 +48,7 @@ export default async function TasksIdPage(props: Props) {
     }
 
     await api.tasks.update(id, { title, description, status });
-    redirect("/");
+    revalidatePath(`/tasks/${id}`);
   };
 
   const remove = async () => {

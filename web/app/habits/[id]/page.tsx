@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
 import { Habit } from "@/models/habit";
 import { TextareaAutosize } from "@/components/TextareaAutosize"
+import { revalidatePath } from "next/cache";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -45,7 +46,7 @@ export default async function HabitPage(props: Props) {
     }
 
     await api.habits.update(id, { title, description, rrule, tzid });
-    redirect("/habits");
+    revalidatePath(`/habits/${id}`);
   };
 
   const remove = async () => {
