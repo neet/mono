@@ -68,12 +68,11 @@ export default async function TasksIdPage(props: Props) {
 
       <p className="text-stone-600 dark:text-stone-400 text-sm mt-1 font-mono">{timestamp}</p>
 
-      <form action={update} className="mt-3 space-y-4">
+      <form key={task.updated_at} action={update} className="mt-3 space-y-4">
         <Controller id="status" label="ステータス">
           {(props) => (
             <select
               {...props}
-              key={task.updated_at}
               name="status"
               defaultValue={task.status}
               className="block px-2 py-1 border-2 rounded"
@@ -89,7 +88,6 @@ export default async function TasksIdPage(props: Props) {
           {(props) => (
             <input
               {...props}
-              key={task.updated_at}
               name="title"
               defaultValue={task.title}
               className="w-full p-2 border-2 rounded"
@@ -101,7 +99,6 @@ export default async function TasksIdPage(props: Props) {
           {(props) => (
             <TextareaAutosize
               {...props}
-              key={task.updated_at}
               name="description"
               defaultValue={task.description}
               className="w-full p-2 border-2 rounded"
