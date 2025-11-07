@@ -73,6 +73,7 @@ export default async function TasksIdPage(props: Props) {
           {(props) => (
             <select
               {...props}
+              key={task.status}
               name="status"
               defaultValue={task.status}
               className="block px-2 py-1 border-2 rounded"
