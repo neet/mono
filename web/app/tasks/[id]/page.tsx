@@ -89,6 +89,7 @@ export default async function TasksIdPage(props: Props) {
           {(props) => (
             <input
               {...props}
+              key={task.title}
               name="title"
               defaultValue={task.title}
               className="w-full p-2 border-2 rounded"
@@ -100,6 +101,7 @@ export default async function TasksIdPage(props: Props) {
           {(props) => (
             <TextareaAutosize
               {...props}
+              key={task.description}
               name="description"
               defaultValue={task.description}
               className="w-full p-2 border-2 rounded"
