@@ -2,8 +2,9 @@ class Habit < ApplicationRecord
   belongs_to :user
   has_many :tasks, dependent: :destroy
 
-  validate :validate_rrule
-  validate :validate_tzid
+  validates :rrule, presence: true
+  validates :tzid, presence: true
+  validate :validate_rrule_and_tzid
 
   after_commit :enqueue, on: [ :create, :update ], if: :rrule_or_tzid_changed?
 
@@ -42,17 +43,18 @@ class Habit < ApplicationRecord
       saved_change_to_rrule? || saved_change_to_tzid?
     end
 
-    def validate_rrule
-      RRule::Rule.new(rrule, tzid: tzid)
-    rescue RRule::InvalidRRule
-      errors.add(:rrule, "is malformed")
-    end
+    def validate_rrule_and_tzid
+      return if tzid.blank? || rrule.blank?
 
-    def validate_tzid
       # https://stackoverflow.com/questions/31792295/validating-a-time-zone-is-valid-in-rails
       if !ActiveSupport::TimeZone[tzid].present?
-        errors.add(:tzid, "does not exist")
+        errors.add :tzid, "is not a valid timezone"
+        return
       end
+
+      RRule::Rule.new(rrule, tzid: tzid)
+    rescue RRule::InvalidRRule
+      errors.add(:rrule, "is invalid")
     end
 
     def enqueue
