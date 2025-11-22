@@ -1,16 +1,25 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
+import { redirect } from "@/i18n/navigation";
 import { api } from "@/api";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
 import { TextareaAutosize } from "@/components/TextareaAutosize"
 
-export const metadata: Metadata = {
-  title: "新規作成",
-};
+export async function generateMetadata(props: PageProps<"/[locale]/habits/new">): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ namespace: "pages.habits_new", locale });
 
-export default async function New() {
+  return {
+    title: t("new"),
+  };
+}
+
+export default async function New(props: PageProps<"/[locale]/habits/new">) {
+  const t = await getTranslations("pages.habits_new");
+  const { locale } = await props.params;
+
   const create = async (fd: FormData) => {
     "use server";
     const title = fd.get("title");
@@ -32,16 +41,16 @@ export default async function New() {
     }
 
     await api.habits.create({ title, description, rrule, tzid });
-    redirect("/habits");
+    redirect({ href: "/habits", locale });
   };
 
   return (
     <div className="space-y-3">
-      <h2 className="font-bold text-xl">新規作成</h2>
+      <h2 className="font-bold text-xl">{t("new")}</h2>
 
       <form className="mt-3 space-y-2" action={create}>
         <div className="space-y-1 rounded">
-          <Controller label="タイトル" id="title">
+          <Controller label={t("title")} id="title">
             {(props) => (
               <input
                 {...props}
@@ -52,7 +61,7 @@ export default async function New() {
             )}
           </Controller>
 
-          <Controller label="説明" id="description">
+          <Controller label={t("description")} id="description">
             {(props) => (
               <TextareaAutosize
                 {...props}
@@ -62,7 +71,7 @@ export default async function New() {
             )}
           </Controller>
 
-          <Controller label="RRULE" id="rrule">
+          <Controller label={t("rrule")} id="rrule">
             {(props) => (
               <input
                 {...props}
@@ -76,7 +85,7 @@ export default async function New() {
             )}
           </Controller>
 
-          <Controller label="タイムゾーン" id="tzid">
+          <Controller label={t("tzid")} id="tzid">
             {(props) => (
               <input
                 {...props}
@@ -91,7 +100,7 @@ export default async function New() {
 
         <div className="flex justify-end gap-2">
           <Button type="submit" variant="primary">
-            保存
+            {t("save")}
           </Button>
         </div>
       </form>

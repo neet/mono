@@ -1,0 +1,57 @@
+{
+  "pages": {
+    "tasks": {
+      "today": "今日",
+      "new_task": "新しいタスク",
+      "add": "追加"
+    },
+    "habits_id": {
+      "title": "タイトル",
+      "description": "説明",
+      "rrule": "RRULE",
+      "tzid": "タイムゾーン",
+      "remove": "削除",
+      "save": "保存"
+    },
+    "habits_new": {
+      "new": "新規作成",
+      "title": "タイトル",
+      "description": "説明",
+      "rrule": "RRULE",
+      "tzid": "タイムゾーン",
+      "save": "保存"
+    },
+    "habits": {
+      "habits": "習慣",
+      "new": "新規作成"
+    },
+    "session_login": {
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "login": "ログイン"
+    },
+    "task_id": {
+      "status": "ステータス",
+      "title": "タイトル",
+      "pending": "進行中",
+      "completed": "完了",
+      "canceled": "取消",
+      "description": "説明",
+      "remove": "削除",
+      "save": "保存"
+    }
+  },
+  "components": {
+    "TabBar": {
+      "pending": "未着手",
+      "done": "完了"
+    },
+    "Complementary": {
+      "tasks": "タスク",
+      "habits": "習慣"
+    },
+    "TaskListItem": {
+      "complete": "完了"
+    }
+  }
+}

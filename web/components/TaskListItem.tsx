@@ -1,18 +1,22 @@
+import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { FC } from "react";
 import clsx from "clsx";
 import { revalidatePath } from "next/cache";
+import { getLocale, getTranslations } from "next-intl/server";
+
 import { Task } from "@/models/task";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { api } from "@/api";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export type TaskListItemProps = {
   readonly task: Task;
   readonly className?: string;
 }
 
-export const TaskListItem: FC<TaskListItemProps> = (props) => {
+export const TaskListItem: FC<TaskListItemProps> = async (props) => {
   const { task, className } = props;
+  const locale = await getLocale();
+  const t = await getTranslations("components.TaskListItem");
 
   const complete = async (fd: FormData) => {
     "use server";
@@ -23,7 +27,7 @@ export const TaskListItem: FC<TaskListItemProps> = (props) => {
     }
 
     await api.tasks.update(task.id, { status });
-    revalidatePath("/");
+    revalidatePath(`/${locale}`);
   };
 
   const nextStatus = task.status === "pending"
@@ -53,7 +57,7 @@ export const TaskListItem: FC<TaskListItemProps> = (props) => {
           
 
           <div className="sr-only">
-            完了
+            {t("complete")}
           </div>
         </button>
       </form>

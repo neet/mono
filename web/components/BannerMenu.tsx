@@ -1,8 +1,9 @@
 "use client";
 
 import { FC, useRef, useCallback, MouseEventHandler } from "react";
-import { Complementary } from "./Complementary";
 import { Bars3Icon } from "@heroicons/react/16/solid";
+
+import { Complementary } from "./Complementary";
 
 type BannerMenuProps = {
   className?: string;

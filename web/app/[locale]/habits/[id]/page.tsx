@@ -1,18 +1,15 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 
+import { redirect } from "@/i18n/navigation";
 import { api } from "@/api";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
 import { Habit } from "@/models/habit";
 import { TextareaAutosize } from "@/components/TextareaAutosize"
-import { revalidatePath } from "next/cache";
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
-
-export const generateMetadata = async (props: Props): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps<"/[locale]/habits/[id]">): Promise<Metadata> => {
   const { id } = await props.params;
   const habit: Habit = await api.habits.get(id);
 
@@ -21,9 +18,10 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   };
 };
 
-export default async function HabitPage(props: Props) {
-  const { id } = await props.params;
+export default async function HabitPage(props: PageProps<"/[locale]/habits/[id]">) {
+  const { locale, id } = await props.params;
   const habit = await api.habits.get(id);
+  const t = await getTranslations("pages.habits_id");
 
   const update = async (fd: FormData) => {
     "use server";
@@ -46,13 +44,13 @@ export default async function HabitPage(props: Props) {
     }
 
     await api.habits.update(id, { title, description, rrule, tzid });
-    revalidatePath(`/habits/${id}`);
+    revalidatePath(`/${locale}/habits/${id}`);
   };
 
   const remove = async () => {
     "use server";
     await api.habits.remove(id);
-    redirect("/habits");
+    redirect({ href: "/habits", locale });
   };
 
   return (
@@ -66,7 +64,7 @@ export default async function HabitPage(props: Props) {
 
       <form className="mt-3 space-y-2" action={update}>
         <div className="space-y-1 rounded">
-          <Controller label="タイトル" id="title">
+          <Controller label={t("title")} id="title">
             {(props) => (
               <input
                 {...props}
@@ -78,7 +76,7 @@ export default async function HabitPage(props: Props) {
             )}
           </Controller>
 
-          <Controller label="説明" id="description">
+          <Controller label={t("description")} id="description">
             {(props) => (
               <TextareaAutosize
                 {...props}
@@ -89,7 +87,7 @@ export default async function HabitPage(props: Props) {
             )}
           </Controller>
 
-          <Controller label="RRULE" id="rrule">
+          <Controller label={t("rrule")} id="rrule">
             {(props) => (
               <input
                 {...props}
@@ -104,7 +102,7 @@ export default async function HabitPage(props: Props) {
             )}
           </Controller>
 
-          <Controller label="タイムゾーン" id="tzid">
+          <Controller label={t("tzid")} id="tzid">
             {(props) => (
               <input
                 {...props}
@@ -120,11 +118,11 @@ export default async function HabitPage(props: Props) {
 
         <div className="flex justify-end gap-2">
           <Button type="submit" form="remover">
-            削除
+            {t("remove")}
           </Button>
 
           <Button type="submit" variant="primary">
-            保存
+            {t("save")}
           </Button>
         </div>
       </form>

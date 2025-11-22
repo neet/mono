@@ -1,8 +1,23 @@
+import { Metadata } from "next";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import setCookieParser from "set-cookie-parser";
 
-export default function LoginPage() {
+import { redirect } from "@/i18n/navigation";
+
+export async function generateMetadata(props: PageProps<"/[locale]/habits/new">): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ namespace: "pages.login", locale });
+
+  return {
+    title: t("login"),
+  };
+}
+
+export default async function LoginPage(props: PageProps<"/[locale]/session/login">) {
+  const { locale } = await props.params;
+  const t = await getTranslations();
+
   const action = async (fd: FormData): Promise<void> => {
     "use server";
     const email = fd.get("email");
@@ -31,7 +46,7 @@ export default function LoginPage() {
       cookie.set(name, value, rest as any);
     }
 
-    redirect("/");
+    redirect({ href: "/", locale });
   };
 
   return (
@@ -42,7 +57,7 @@ export default function LoginPage() {
             htmlFor="email"
             className="block border-dashed border-b-2 p-2 text-sm font-bold"
           >
-            メールアドレス
+            {t("email")}
           </label>
           <input
             id="email"
@@ -58,7 +73,7 @@ export default function LoginPage() {
             htmlFor="password"
             className="block border-dashed border-b-2 p-2 text-sm font-bold"
           >
-            パスワード
+            {t("password")}
           </label>
           <input
             id="password"
@@ -73,7 +88,7 @@ export default function LoginPage() {
           type="submit"
           className="bg-[#F55FFF] px-3 py-1 border-2 border-e-8 border-b-8 border-black"
         >
-          ログイン
+          {t("login")}
         </button>
       </form>
     </div>

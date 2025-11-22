@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 
+import { redirect } from "@/i18n/navigation";
 import { api } from "@/api";
 import { Task } from "@/models/task";
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
 import { TextareaAutosize } from "@/components/TextareaAutosize"
-import { revalidatePath } from "next/cache";
 
-type Props = {
-  params: Promise<{
-    id: string;
-  }>;
-};
-
-export const generateMetadata = async (props: Props): Promise<Metadata> => {
+export const generateMetadata = async (props: PageProps<"/[locale]/tasks/[id]">): Promise<Metadata> => {
   const { id } = await props.params;
   const task: Task = await api.tasks.get(id);
 
@@ -23,13 +18,13 @@ export const generateMetadata = async (props: Props): Promise<Metadata> => {
   };
 };
 
-export default async function TasksIdPage(props: Props) {
-  const { id } = await props.params;
+export default async function TasksIdPage(props: PageProps<"/[locale]/tasks/[id]">) {
+  const { id, locale } = await props.params;
+  const t = await getTranslations("pages.task_id");
   const task: Task = await api.tasks.get(id);
 
-  const timestamp = new Intl.DateTimeFormat("ja-JP").format(
-    new Date(task.created_at)
-  );
+  const timestamp = new Intl.DateTimeFormat(locale, { dateStyle: "full" })
+    .format(new Date(task.created_at));
 
   const update = async (fd: FormData) => {
     "use server";
@@ -48,13 +43,13 @@ export default async function TasksIdPage(props: Props) {
     }
 
     await api.tasks.update(id, { title, description, status });
-    revalidatePath(`/tasks/${id}`);
+    revalidatePath(`/${locale}/tasks/${id}`);
   };
 
   const remove = async () => {
     "use server";
     await api.tasks.remove(id);
-    redirect("/");
+    redirect({ href: "/", locale });
   };
 
   return (
@@ -69,7 +64,7 @@ export default async function TasksIdPage(props: Props) {
       <p className="text-stone-600 dark:text-stone-400 text-sm mt-1 font-mono">{timestamp}</p>
 
       <form action={update} className="mt-3 space-y-4">
-        <Controller id="status" label="ステータス">
+        <Controller id="status" label={t("status")}>
           {(props) => (
             <select
               {...props}
@@ -77,14 +72,14 @@ export default async function TasksIdPage(props: Props) {
               defaultValue={task.status}
               className="block px-2 py-1 border-2 rounded"
             >
-              <option value="pending">進行中</option>
-              <option value="completed">完了</option>
-              <option value="canceled">取消</option>
+              <option value="pending">{t("pending")}</option>
+              <option value="completed">{t("completed")}</option>
+              <option value="canceled">{t("canceled")}</option>
             </select>
           )}
         </Controller>
 
-        <Controller id="title" label="タイトル">
+        <Controller id="title" label={t("title")}>
           {(props) => (
             <input
               {...props}
@@ -95,7 +90,7 @@ export default async function TasksIdPage(props: Props) {
           )}
         </Controller>
 
-        <Controller id="description" label="説明文">
+        <Controller id="description" label={t("description")}>
           {(props) => (
             <TextareaAutosize
               {...props}
@@ -108,11 +103,11 @@ export default async function TasksIdPage(props: Props) {
 
         <div className="flex justify-end gap-2">
           <Button type="submit" form="remover">
-            削除
+            {t("remove")}
           </Button>
 
           <Button type="submit" variant="primary">
-            保存
+            {t("save")}
           </Button>
         </div>
       </form>

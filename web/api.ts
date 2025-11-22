@@ -1,7 +1,9 @@
 import { cookies } from "next/headers";
 import { Task, TaskStatus } from "./models/task";
 import { Habit } from "./models/habit";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
+import { getLocale } from "next-intl/server";
 
 const request = async <T>(
   method: string,
@@ -9,7 +11,8 @@ const request = async <T>(
   search?: Record<string, unknown>,
   body?: Record<string, unknown>
 ): Promise<T> => {
-  const ck = await cookies();
+  const locale = await getLocale();
+  const requestCookies = await cookies();
 
   let url = new URL(path, "http://localhost:3000").toString();
 
@@ -22,7 +25,7 @@ const request = async <T>(
   }
 
   const headers = new Headers({
-    Cookie: ck.toString(),
+    Cookie: requestCookies.toString(),
   });
 
   if (body) {
@@ -43,7 +46,7 @@ const request = async <T>(
 
   if (!res.ok) {
     if (res.status === 401) {
-      return redirect("/session/login");
+      return redirect({ href: "/session/login", locale });
     }
     if (res.status === 404) {
       return notFound();
