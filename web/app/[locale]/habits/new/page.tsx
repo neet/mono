@@ -29,6 +29,7 @@ export default async function New(props: PageProps<"/[locale]/habits/new">) {
       redirect({ href: "/habits", locale });
       return createActionState(values);
     } catch (error) {
+      console.log({ values, error });
       if (error instanceof ApiError) {
         return createActionState(values, error);
       }

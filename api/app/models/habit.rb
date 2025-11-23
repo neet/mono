@@ -48,13 +48,13 @@ class Habit < ApplicationRecord
 
       # https://stackoverflow.com/questions/31792295/validating-a-time-zone-is-valid-in-rails
       if !ActiveSupport::TimeZone[tzid].present?
-        errors.add :tzid, "is not a valid timezone"
+        errors.add :tzid, :invalid
         return
       end
 
       RRule::Rule.new(rrule, tzid: tzid)
     rescue RRule::InvalidRRule
-      errors.add(:rrule, "is invalid")
+      errors.add :rrule, :invalid
     end
 
     def enqueue
