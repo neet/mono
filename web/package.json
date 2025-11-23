@@ -20,7 +20,8 @@
     "react-dom": "^19.2.0",
     "react-textarea-autosize": "^8.5.9",
     "set-cookie-parser": "^2.7.2",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -5,6 +5,19 @@ import { notFound } from "next/navigation";
 import { redirect } from "@/i18n/navigation";
 import { getLocale } from "next-intl/server";
 
+export class ApiError<T extends string | number | symbol> {
+  error?: string;
+  errors: { [key in T]?: string[] } = {};
+
+  constructor(data: any) {
+    if ("error" in data) {
+      this.error = data; 
+    } else {
+      this.errors = data;
+    }
+  }
+}
+
 const request = async <T>(
   method: string,
   path: string,
@@ -26,6 +39,7 @@ const request = async <T>(
 
   const headers = new Headers({
     Cookie: requestCookies.toString(),
+    "Accept-Language": locale,
   });
 
   if (body) {
@@ -46,17 +60,22 @@ const request = async <T>(
 
   if (!res.ok) {
     if (res.status === 401) {
-      return redirect({ href: "/session/login", locale });
+      throw redirect({ href: "/session/login", locale });
     }
     if (res.status === 404) {
-      return notFound();
+      throw notFound();
+    }
+    if (res.status === 422) {
+      const data = await res.json();
+      throw new ApiError(data);
     }
     throw new Error(`Unexpected error from the server: ${res.statusText}`, {
       cause: res,
     });
   }
 
-  if (!res.headers.get("Content-Type")?.startsWith("application/json")) {
+  const contentType = res.headers.get("Content-Type");
+  if (!contentType || !contentType.startsWith("application/json")) {
     return undefined as T;
   }
 

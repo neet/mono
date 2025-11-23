@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PlusIcon } from "@heroicons/react/16/solid";
 
@@ -7,7 +8,7 @@ import { api } from "@/api";
 import { TaskStatus } from "@/models/task";
 import { TaskList } from "@/components/TaskList";
 import { TabBar } from "@/components/TabBar";
-import { getTranslations } from "next-intl/server";
+import { getPathname } from "@/i18n/navigation";
 
 export async function generateMetadata(props: PageProps<"/[locale]/tasks">): Promise<Metadata> {
   const { locale } = await props.params;
@@ -30,8 +31,9 @@ const validateStatus = (x: unknown): x is TaskStatus | TaskStatus[] => {
 }
 
 export default async function TaskPage(props: PageProps<"/[locale]/tasks">) {
-  const { searchParams } = props;
+  const { params, searchParams } = props;
   const { status } = await searchParams;
+  const { locale } = await params;
   const t = await getTranslations("pages.tasks");
 
   if (!validateStatus(status)) {
@@ -50,7 +52,7 @@ export default async function TaskPage(props: PageProps<"/[locale]/tasks">) {
 
     await api.tasks.create({ title });
 
-    revalidatePath("/");
+    revalidatePath(getPathname({ href: "/", locale }));
   };
 
   return (
