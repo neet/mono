@@ -42,4 +42,3 @@ gem "rrule", "~> 0.6.0"
 gem "ruby-lsp", "~> 0.26.1", group: :development
 
 gem "rails-i18n", "~> 8.0.0"
-
