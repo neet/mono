@@ -1,25 +1,44 @@
 import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
+import { getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { PlusIcon } from "@heroicons/react/16/solid";
 
 import { api } from "@/api";
 import { TaskStatus } from "@/models/task";
 import { TaskList } from "@/components/TaskList";
 import { TabBar } from "@/components/TabBar";
+import { getPathname } from "@/i18n/navigation";
 
-export const metadata: Metadata = {
-  title: "今日",
-};
+export async function generateMetadata(props: PageProps<"/[locale]/tasks">): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ namespace: "pages.tasks", locale });
 
-export type TaskProps = {
-  searchParams: Promise<{
-    status?: TaskStatus | TaskStatus[];
-  }>;
-};
+  return {
+    title: t("today")
+  }
+}
 
-export default async function TaskPage(props: TaskProps) {
-  const { searchParams } = props;
+// TODO: Use zod for enum checking
+const validateStatus = (x: unknown): x is TaskStatus | TaskStatus[] => {
+  if (typeof x === "string") {
+    return true;
+  }
+  if (Array.isArray(x) && x.every(item => typeof item === "string")) {
+    return true;
+  }
+  return false;
+}
+
+export default async function TaskPage(props: PageProps<"/[locale]/tasks">) {
+  const { params, searchParams } = props;
   const { status } = await searchParams;
+  const { locale } = await params;
+  const t = await getTranslations("pages.tasks");
+
+  if (!validateStatus(status)) {
+    return notFound();
+  }
 
   const tasks = await api.tasks.list({ status });
 
@@ -33,7 +52,7 @@ export default async function TaskPage(props: TaskProps) {
 
     await api.tasks.create({ title });
 
-    revalidatePath("/");
+    revalidatePath(getPathname({ href: "/", locale }));
   };
 
   return (
@@ -47,11 +66,11 @@ export default async function TaskPage(props: TaskProps) {
           type="text"
           name="title"
           className="block grow placeholder-stone-600 dark:placeholder-stone-400"
-          placeholder="新しいタスク"
+          placeholder={t("new_task")}
         />
 
         <button className="bg-black p-1 text-white rounded dark:bg-white dark:text-black">
-          <PlusIcon className="size-4" />
+          <PlusIcon className="size-4" aria-label={t("add")} />
         </button>
       </form>
 

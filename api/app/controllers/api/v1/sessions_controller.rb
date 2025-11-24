@@ -10,7 +10,7 @@ class Api::V1::SessionsController < ApplicationController
 
       render status: :ok
     else
-      render json: { error: "Invalid email or password" }, status: :unauthorized
+      render json: { error: I18n.t("sessions.invalid") }, status: :unauthorized
     end
   end
 

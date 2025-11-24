@@ -1,0 +1,57 @@
+{
+  "pages": {
+    "tasks": {
+      "today": "Today",
+      "new_task": "New Task",
+      "add": "Add"
+    },
+    "habits_id": {
+      "title": "Title",
+      "description": "Description",
+      "rrule": "RRULE",
+      "tzid": "Timezone",
+      "remove": "Delete",
+      "save": "Save"
+    },
+    "habits_new": {
+      "new": "Create",
+      "title": "Title",
+      "description": "Description",
+      "rrule": "RRULE",
+      "tzid": "Timezone",
+      "save": "Save"
+    },
+    "habits": {
+      "habits": "Habits",
+      "new": "Create"
+    },
+    "session_login": {
+      "email": "Email",
+      "password": "Password",
+      "login": "Sign in"
+    },
+    "task_id": {
+      "status": "Status",
+      "title": "Title",
+      "pending": "Pending",
+      "completed": "Done",
+      "canceled": "Canceled",
+      "description": "Description",
+      "remove": "Delete",
+      "save": "Save"
+    }
+  },
+  "components": {
+    "TabBar": {
+      "pending": "Pending",
+      "done": "Done"
+    },
+    "Complementary": {
+      "tasks": "Tasks",
+      "habits": "Habits"
+    },
+    "TaskListItem": {
+      "complete": "Done"
+    }
+  }
+}

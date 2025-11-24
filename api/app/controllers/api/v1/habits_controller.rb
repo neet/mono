@@ -20,7 +20,7 @@ class Api::V1::HabitsController < ApplicationController
     if @habit.save
       render json: @habit, status: :created
     else
-      render json: @habit.errors, status: :unprocessable_content
+      render json: @habit.errors.to_hash(true), status: :unprocessable_content
     end
   end
 
@@ -29,7 +29,7 @@ class Api::V1::HabitsController < ApplicationController
     if @habit.update(habit_params)
       render json: @habit
     else
-      render json: @habit.errors, status: :unprocessable_content
+      render json: @habit.errors.to_hash(true), status: :unprocessable_content
     end
   end
 

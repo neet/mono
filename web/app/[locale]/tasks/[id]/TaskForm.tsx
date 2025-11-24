@@ -1,0 +1,86 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { FC, useActionState } from "react"
+
+import { Task } from "@/models/task";
+import { Controller } from "@/components/Controller";
+import { Button } from "@/components/Button";
+import { TextareaAutosize } from "@/components/TextareaAutosize";
+
+import { FormState } from "./models";
+
+export type TaskFormProps = {
+  task: Task;
+  updateAction: (formState: FormState, fd: FormData) => Promise<FormState>;
+  removeAction: () => Promise<void>;
+}
+
+export const TaskForm: FC<TaskFormProps> = (props) => {
+  const { task, removeAction } = props;
+
+  const t = useTranslations("pages.task_id");
+  const [state, updateAction] = useActionState(props.updateAction, {
+    values: {
+      status: task.status,
+      title: task.title,
+      description: task.description,
+    },
+    errors: {},
+  });
+
+  return (
+    <>
+      <form action={updateAction} className="mt-3 space-y-4" key={task.updated_at}>
+        <Controller id="status" label={t("status")} errors={state.errors.status}>
+          {(props) => (
+            <select
+              {...props}
+              name="status"
+              defaultValue={state.values.status}
+              className="block px-2 py-1 border-2 rounded"
+            >
+              <option value="pending">{t("pending")}</option>
+              <option value="completed">{t("completed")}</option>
+              <option value="canceled">{t("canceled")}</option>
+            </select>
+          )}
+        </Controller>
+
+        <Controller id="title" label={t("title")} errors={state.errors.title}>
+          {(props) => (
+            <input
+              {...props}
+              name="title"
+              defaultValue={state.values.title}
+              className="w-full p-2 border-2 rounded"
+            />
+          )}
+        </Controller>
+
+        <Controller id="description" label={t("description")} errors={state.errors.description}>
+          {(props) => (
+            <TextareaAutosize
+              {...props}
+              name="description"
+              defaultValue={state.values.description}
+              className="w-full p-2 border-2 rounded"
+            />
+          )}
+        </Controller>
+
+        <div className="flex justify-end gap-2">
+          <Button type="submit" form="remover">
+            {t("remove")}
+          </Button>
+
+          <Button type="submit" variant="primary">
+            {t("save")}
+          </Button>
+        </div>
+      </form>
+
+      <form id="remover" action={removeAction} />
+    </>
+  )
+}

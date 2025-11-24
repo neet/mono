@@ -1,0 +1,20 @@
+ja:
+  sessions:
+    invalid: メールアドレスまたはパスワードが間違っています
+  activerecord:
+    models:
+      habit: 習慣
+      user: ユーザ
+      task: タスク
+    attributes:
+      habit:
+        title: タイトル
+        description: 説明
+        rrule: RRule
+        tzid: タイムゾーン 
+      task:
+        title: タイトル
+        description: 説明
+      user:
+        email: メールアドレス
+        password: パスワード 

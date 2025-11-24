@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import Link from "next/link";
 import { FC } from "react";
+
+import { Link } from "@/i18n/navigation";
 import { BannerMenu } from "./BannerMenu";
 
 export type BannerProps = {
