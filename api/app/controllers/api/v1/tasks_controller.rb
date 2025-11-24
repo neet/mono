@@ -26,7 +26,7 @@ class Api::V1::TasksController < ApplicationController
     if @task.save
       render json: @task, status: :created
     else
-      render json: @task.errors, status: :unprocessable_content
+      render json: @task.errors.to_hash(true), status: :unprocessable_content
     end
   end
 
@@ -35,7 +35,7 @@ class Api::V1::TasksController < ApplicationController
     if @task.update(task_params)
       render json: @task
     else
-      render json: @task.errors, status: :unprocessable_content
+      render json: @task.errors.to_hash(true), status: :unprocessable_content
     end
   end
 

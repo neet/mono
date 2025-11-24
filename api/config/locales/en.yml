@@ -1,4 +1,6 @@
 en:
+  sessions:
+    invalid: Invalid email or password
   activerecord:
     models:
       habit: Habit

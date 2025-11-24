@@ -1,4 +1,6 @@
 ja:
+  sessions:
+    invalid: メールアドレスまたはパスワードが間違っています
   activerecord:
     models:
       habit: 習慣
