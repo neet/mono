@@ -11,7 +11,7 @@ export class ApiError<T extends string | number | symbol> {
 
   constructor(data: any) {
     if ("error" in data) {
-      this.error = data; 
+      this.error = data.error;
     } else {
       this.errors = data;
     }
