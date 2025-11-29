@@ -50,6 +50,9 @@
       "tasks": "Tasks",
       "habits": "Habits"
     },
+    "TaskList": {
+      "empty": "You don't have any incomplete tasks!"
+    },
     "TaskListItem": {
       "complete": "Done"
     }

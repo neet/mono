@@ -50,6 +50,9 @@
       "tasks": "タスク",
       "habits": "習慣"
     },
+    "TaskList": {
+      "empty": "未完了のタスクはありません"
+    },
     "TaskListItem": {
       "complete": "完了"
     }
