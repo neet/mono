@@ -9,6 +9,7 @@ export class ApiError<T extends string | number | symbol> {
   error?: string;
   errors: { [key in T]?: string[] } = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(data: any) {
     if ("error" in data) {
       this.error = data.error;
