@@ -162,6 +162,7 @@ type UpdateTaskParams = {
   readonly title?: string;
   readonly description?: string;
   readonly status?: string;
+  readonly deadline_on?: string | null;
 };
 
 const updateTask = (id: string, params: UpdateTaskParams): Promise<Task> => {

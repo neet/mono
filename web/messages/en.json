@@ -37,6 +37,7 @@
       "completed": "Done",
       "canceled": "Canceled",
       "description": "Description",
+      "deadline_on": "Deadline",
       "remove": "Delete",
       "save": "Save"
     }
