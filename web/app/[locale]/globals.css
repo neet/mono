@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
   }
-} */
+}
 
 html {
   font-size: 24px;

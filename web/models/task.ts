@@ -11,4 +11,5 @@ export interface Task {
   status: TaskStatus;
   created_at: string;
   updated_at: string;
+  deadline_on: string | null;
 }

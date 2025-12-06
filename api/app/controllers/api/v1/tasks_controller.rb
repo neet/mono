@@ -9,7 +9,7 @@ class Api::V1::TasksController < ApplicationController
       tasks = tasks.where(status: params[:status])
     end
 
-    tasks = tasks.order(created_at: :desc)
+    tasks = tasks.order(Arel.sql("deadline_on ASC NULLS FIRST, created_at DESC"))
 
     render json: tasks
   end
@@ -52,6 +52,6 @@ class Api::V1::TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :title, :description, :status ])
+      params.expect(task: [ :title, :description, :status, :deadline_on ])
     end
 end

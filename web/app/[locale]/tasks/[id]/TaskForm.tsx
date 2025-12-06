@@ -25,6 +25,7 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
       status: task.status,
       title: task.title,
       description: task.description,
+      deadline_on: task.deadline_on,
     },
     errors: {},
   });
@@ -64,6 +65,18 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
               {...props}
               name="description"
               defaultValue={state.values.description}
+              className="w-full p-2 border-2 rounded"
+            />
+          )}
+        </Controller>
+
+        <Controller id="deadline_on" label={t("deadline_on")} errors={state.errors.deadline_on}>
+          {(props) => (
+            <input
+              {...props}
+              type="date"
+              name="deadline_on"
+              defaultValue={state.values.deadline_on ?? undefined}
               className="w-full p-2 border-2 rounded"
             />
           )}

@@ -34,6 +34,10 @@ export const TaskListItem: FC<TaskListItemProps> = async (props) => {
     ? "completed"
     : "pending";
 
+  const deadlineOn = task.deadline_on
+    ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(task.deadline_on))
+    : null;
+
   return (
     <div className={clsx("flex gap-2 items-center", className)} style={{ viewTransitionName: `task-${task.id}` }}>
       <form action={complete} className="contents">
@@ -66,6 +70,16 @@ export const TaskListItem: FC<TaskListItemProps> = async (props) => {
         <Link href={`/tasks/${task.id}`} className="hover:underline">
           {task.title}
         </Link>
+
+        {
+          deadlineOn && (
+            <div className="text-zinc-600 dark:text-zinc-400">
+              <time dateTime={task.deadline_on ?? undefined}>
+                {deadlineOn}
+              </time>
+            </div>
+          )
+        }
       </div>
     </div>
   );

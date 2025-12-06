@@ -37,6 +37,7 @@
       "completed": "完了",
       "canceled": "取消",
       "description": "説明",
+      "deadline_on": "期限",
       "remove": "削除",
       "save": "保存"
     }
