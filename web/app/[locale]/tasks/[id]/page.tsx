@@ -32,7 +32,7 @@ export default async function TasksIdPage(props: PageProps<"/[locale]/tasks/[id]
     try {
       await api.tasks.update(id, values);
       revalidatePath(getPathname({ href: `/tasks/${id}`, locale }));
-      return createActionState(values);
+      return { type: "success", values };
     } catch (error) {
       if (error instanceof ApiError) {
         return createActionState(values, error);

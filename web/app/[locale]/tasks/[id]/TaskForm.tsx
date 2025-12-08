@@ -9,6 +9,8 @@ import { Button } from "@/components/Button";
 import { TextareaAutosize } from "@/components/TextareaAutosize";
 
 import { FormState } from "./models";
+import { mapFailure } from "@/utils/action_state";
+import { Notification } from "@/components/Notification";
 
 export type TaskFormProps = {
   task: Task;
@@ -21,18 +23,24 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
 
   const t = useTranslations("pages.task_id");
   const [state, updateAction] = useActionState(props.updateAction, {
+    type: "pending",
     values: {
       status: task.status,
       title: task.title,
       description: task.description,
     },
-    errors: {},
   });
 
   return (
-    <>
-      <form action={updateAction} className="mt-3 space-y-4" key={task.updated_at}>
-        <Controller id="status" label={t("status")} errors={state.errors.status}>
+    <div className="mt-3 space-y-5">
+      {state.type === "success" && (
+        <Notification>
+          {t("success")}   
+        </Notification>
+      )}
+
+      <form action={updateAction} className="space-y-4" key={task.updated_at}>
+        <Controller id="status" label={t("status")} errors={mapFailure(state, s => s.errors.status)}>
           {(props) => (
             <select
               {...props}
@@ -47,7 +55,7 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller id="title" label={t("title")} errors={state.errors.title}>
+        <Controller id="title" label={t("title")} errors={mapFailure(state, s => s.errors.title)}>
           {(props) => (
             <input
               {...props}
@@ -58,7 +66,7 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller id="description" label={t("description")} errors={state.errors.description}>
+        <Controller id="description" label={t("description")} errors={mapFailure(state, s => s.errors.description)}>
           {(props) => (
             <TextareaAutosize
               {...props}
@@ -81,6 +89,6 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
       </form>
 
       <form id="remover" action={removeAction} />
-    </>
+    </div>
   )
 }
