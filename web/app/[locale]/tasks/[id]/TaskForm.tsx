@@ -78,7 +78,7 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller id="deadline_on" label={t("deadline_on")} errors={state.errors.deadline_on}>
+        <Controller id="deadline_on" label={t("deadline_on")} errors={mapFailure(state, s => s.errors.deadline_on)}>
           {(props) => (
             <input
               {...props}
