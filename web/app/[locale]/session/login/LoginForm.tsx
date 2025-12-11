@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/Button";
 import { Controller } from "@/components/Controller";
+import { mapFailure } from "@/utils/action_state";
 
 import { FormState } from "./models";
 
@@ -18,8 +19,8 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   const error = useRef<HTMLAnchorElement>(null); 
   const t = useTranslations("pages.session_login");
   const [actionState, formAction] = useActionState(action, {
+    type: "pending",
     values: {},
-    errors: {},
   });
 
   useEffect(() => {
@@ -29,14 +30,14 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   return (
     <form action={formAction} className="my-4 space-y-3">
       <a href="#" ref={error} tabIndex={-1} className="block">
-        {actionState.error && (
+        {mapFailure(actionState, s => s.error && (
           <p className="rounded py-2 px-3 dark:bg-red-950 dark:text-red-400">
-            {actionState.error}
+            {s.error}
           </p>
-        )}
+        ))}
       </a>
 
-      <Controller id="email" label={t("email")} errors={actionState.errors.email}>
+      <Controller id="email" label={t("email")} errors={mapFailure(actionState, s => s.errors.email)}>
         {(props) => (
           <input
             {...props}
@@ -50,7 +51,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         )}
       </Controller>
 
-      <Controller id="password" label={t("password")} errors={actionState.errors.password}>
+      <Controller id="password" label={t("password")} errors={mapFailure(actionState, s => s.errors.password)}>
         {(props) => (
           <input
             {...props}

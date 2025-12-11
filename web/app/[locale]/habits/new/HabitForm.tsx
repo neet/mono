@@ -7,6 +7,7 @@ import { Controller } from "@/components/Controller";
 import { TextareaAutosize } from "@/components/TextareaAutosize";
 import { Button } from "@/components/Button";
 import { FormState } from "./models";
+import { mapFailure } from "@/utils/action_state";
 
 export type HabitFormProps = {
   action: (prevState: FormState, formData: FormData) => Promise<FormState>;
@@ -17,14 +18,14 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
 
   const t = useTranslations("pages.habits_new");
   const [state, formAction] = useActionState(action, {
+    type: "pending",
     values: {},
-    errors: {},
   });
 
   return (
     <form className="mt-3 space-y-2" action={formAction}>
       <div className="space-y-1 rounded">
-        <Controller label={t("title")} id="title" errors={state.errors.title}>
+        <Controller label={t("title")} id="title" errors={mapFailure(state, s => s.errors.title)}>
           {(props) => (
             <input
               {...props}
@@ -36,7 +37,7 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller label={t("description")} id="description" errors={state.errors.description}>
+        <Controller label={t("description")} id="description" errors={mapFailure(state, s => s.errors.description)}>
           {(props) => (
             <TextareaAutosize
               {...props}
@@ -47,7 +48,7 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller label={t("rrule")} id="rrule" errors={state.errors.rrule}>
+        <Controller label={t("rrule")} id="rrule" errors={mapFailure(state, s => s.errors.rrule)}>
           {(props) => (
             <input
               {...props}
@@ -62,7 +63,7 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller label={t("tzid")} id="tzid" errors={state.errors.tzid}>
+        <Controller label={t("tzid")} id="tzid" errors={mapFailure(state, s => s.errors.tzid)}>
           {(props) => (
             <input
               {...props}

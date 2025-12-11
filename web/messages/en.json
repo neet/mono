@@ -6,6 +6,7 @@
       "add": "Add"
     },
     "habits_id": {
+      "success": "Habit saved successfully",
       "title": "Title",
       "description": "Description",
       "rrule": "RRULE",
@@ -31,6 +32,7 @@
       "login": "Sign in"
     },
     "task_id": {
+      "success": "Task saved successfully",
       "status": "Status",
       "title": "Title",
       "pending": "Pending",

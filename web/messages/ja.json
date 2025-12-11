@@ -6,6 +6,7 @@
       "add": "追加"
     },
     "habits_id": {
+      "success": "習慣を保存しました",
       "title": "タイトル",
       "description": "説明",
       "rrule": "RRULE",
@@ -31,6 +32,7 @@
       "login": "ログイン"
     },
     "task_id": {
+      "success": "タスクを保存しました",
       "status": "ステータス",
       "title": "タイトル",
       "pending": "進行中",

@@ -29,7 +29,7 @@ export default async function HabitPage(props: PageProps<"/[locale]/habits/[id]"
       await api.habits.update(id, values);
       revalidatePath(getPathname({ href: `/habits`, locale }));
       revalidatePath(getPathname({ href: `/habits/${id}`, locale }));
-      return createActionState(values);
+      return { type: "success", values };
     } catch (error) {
       if (error instanceof ApiError) {
         return createActionState(values, error);
