@@ -16,7 +16,7 @@ export type HabitFormProps = {
   habit: Habit;
   updateAction: (prevState: FormState, fd: FormData) => Promise<FormState>;
   removeAction: (fd: FormData) => Promise<void>;
-}
+};
 
 export const HabitForm: FC<HabitFormProps> = (props) => {
   const { habit, removeAction } = props;
@@ -34,15 +34,15 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
 
   return (
     <div className="mt-3 space-y-5">
-      {state.type === "success" && (
-        <Notification>
-          {t("success")}   
-        </Notification>
-      )}
+      {state.type === "success" && <Notification>{t("success")}</Notification>}
 
       <form className="mt-3 space-y-2" action={updateAction}>
         <div className="space-y-1 rounded">
-          <Controller label={t("title")} id="title" errors={mapFailure(state, s => s.errors.title)}>
+          <Controller
+            label={t("title")}
+            id="title"
+            errors={mapFailure(state, (s) => s.errors.title)}
+          >
             {(props) => (
               <input
                 {...props}
@@ -54,7 +54,11 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
             )}
           </Controller>
 
-          <Controller label={t("description")} id="description" errors={mapFailure(state, s => s.errors.description)}>
+          <Controller
+            label={t("description")}
+            id="description"
+            errors={mapFailure(state, (s) => s.errors.description)}
+          >
             {(props) => (
               <TextareaAutosize
                 {...props}
@@ -65,7 +69,11 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
             )}
           </Controller>
 
-          <Controller label={t("rrule")} id="rrule" errors={mapFailure(state, s => s.errors.rrule)}>
+          <Controller
+            label={t("rrule")}
+            id="rrule"
+            errors={mapFailure(state, (s) => s.errors.rrule)}
+          >
             {(props) => (
               <input
                 {...props}
@@ -80,7 +88,11 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
             )}
           </Controller>
 
-          <Controller label={t("tzid")} id="tzid" errors={mapFailure(state, s => s.errors.tzid)}>
+          <Controller
+            label={t("tzid")}
+            id="tzid"
+            errors={mapFailure(state, (s) => s.errors.tzid)}
+          >
             {(props) => (
               <input
                 {...props}

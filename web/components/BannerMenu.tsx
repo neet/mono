@@ -7,7 +7,7 @@ import { Complementary } from "./Complementary";
 
 type BannerMenuProps = {
   className?: string;
-}
+};
 
 export const BannerMenu: FC<BannerMenuProps> = (props) => {
   const { className } = props;
@@ -33,5 +33,5 @@ export const BannerMenu: FC<BannerMenuProps> = (props) => {
         <Complementary className="bg-amber-50 dark:bg-zinc-950 dark:text-white rounded border-2" />
       </dialog>
     </>
-  )
-}
+  );
+};

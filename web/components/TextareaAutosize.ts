@@ -1,4 +1,6 @@
-"use client"
+"use client";
 
-export { default as TextareaAutosize, type TextareaAutosizeProps } from "react-textarea-autosize";
-
+export {
+  default as TextareaAutosize,
+  type TextareaAutosizeProps,
+} from "react-textarea-autosize";

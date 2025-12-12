@@ -25,7 +25,10 @@ export const Complementary: FC<ComplementaryProps> = (props) => {
             </Link>
           </li>
           <li>
-            <Link href="/habits" className="flex gap-1 items-center hover:underline">
+            <Link
+              href="/habits"
+              className="flex gap-1 items-center hover:underline"
+            >
               <ArrowPathIcon className="size-5" />
               {t("habits")}
             </Link>
@@ -36,12 +39,18 @@ export const Complementary: FC<ComplementaryProps> = (props) => {
       <nav className="p-4">
         <ul className="flex flex-wrap gap-2 text-sm">
           <li>
-            <NextLink href={getPathname({ href: "/", locale: "en" })} className="underline">
+            <NextLink
+              href={getPathname({ href: "/", locale: "en" })}
+              className="underline"
+            >
               English
             </NextLink>
           </li>
           <li>
-            <NextLink href={getPathname({ href: "/", locale: "ja" })} className="underline">
+            <NextLink
+              href={getPathname({ href: "/", locale: "ja" })}
+              className="underline"
+            >
               日本語
             </NextLink>
           </li>

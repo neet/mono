@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
-import createNextIntlPlugin from 'next-intl/plugin';
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   rewrites: async () => [
     {
-      source: '/api/:path',
-      destination: 'http://localhost:3000/api/:path',
+      source: "/api/:path",
+      destination: "http://localhost:3000/api/:path",
     },
   ],
   experimental: {
@@ -15,4 +15,3 @@ const nextConfig: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);
-

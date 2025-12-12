@@ -8,7 +8,9 @@ import { createActionState } from "@/utils/action_state";
 import { formSchema, FormState } from "./models";
 import { HabitForm } from "./HabitForm";
 
-export async function generateMetadata(props: PageProps<"/[locale]/habits/new">): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/[locale]/habits/new">,
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ namespace: "pages.habits_new", locale });
 
@@ -21,7 +23,10 @@ export default async function New(props: PageProps<"/[locale]/habits/new">) {
   const t = await getTranslations("pages.habits_new");
   const { locale } = await props.params;
 
-  const create = async (_: FormState, formData: FormData): Promise<FormState> => {
+  const create = async (
+    _: FormState,
+    formData: FormData,
+  ): Promise<FormState> => {
     "use server";
     const values = formSchema.parse(Object.fromEntries(formData.entries()));
     try {

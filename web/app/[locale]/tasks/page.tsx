@@ -10,13 +10,15 @@ import { TaskList } from "@/components/TaskList";
 import { TabBar } from "@/components/TabBar";
 import { getPathname } from "@/i18n/navigation";
 
-export async function generateMetadata(props: PageProps<"/[locale]/tasks">): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/[locale]/tasks">,
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ namespace: "pages.tasks", locale });
 
   return {
-    title: t("today")
-  }
+    title: t("today"),
+  };
 }
 
 // TODO: Use zod for enum checking
@@ -24,11 +26,11 @@ const validateStatus = (x: unknown): x is TaskStatus | TaskStatus[] => {
   if (typeof x === "string") {
     return true;
   }
-  if (Array.isArray(x) && x.every(item => typeof item === "string")) {
+  if (Array.isArray(x) && x.every((item) => typeof item === "string")) {
     return true;
   }
   return false;
-}
+};
 
 export default async function TaskPage(props: PageProps<"/[locale]/tasks">) {
   const { params, searchParams } = props;
@@ -57,10 +59,7 @@ export default async function TaskPage(props: PageProps<"/[locale]/tasks">) {
 
   return (
     <div className="space-y-3">
-      <form
-        action={create}
-        className="border-2 rounded p-2 flex"
-      >
+      <form action={create} className="border-2 rounded p-2 flex">
         <input
           id="new-task"
           type="text"

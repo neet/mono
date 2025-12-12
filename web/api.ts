@@ -23,7 +23,7 @@ const request = async <T>(
   method: string,
   path: string,
   search?: Record<string, unknown>,
-  body?: Record<string, unknown>
+  body?: Record<string, unknown>,
 ): Promise<T> => {
   const locale = await getLocale();
   const requestCookies = await cookies();
@@ -81,23 +81,20 @@ const request = async <T>(
   }
 
   return await res.json();
-}
+};
 const isRecord = (x: unknown): x is Record<string, unknown> =>
   typeof x === "object" && x !== null && x.constructor.name === "Object";
 
 const flatten = (object: unknown, parent = ""): [string, unknown][] => {
   if (Array.isArray(object)) {
     return object.flatMap((value, i) =>
-      flatten(
-        value,
-        parent === "" ? i.toString() : `${parent}[]`,
-      ),
+      flatten(value, parent === "" ? i.toString() : `${parent}[]`),
     );
   }
 
   if (isRecord(object)) {
     return Object.entries(object).flatMap(([key, value]) =>
-      flatten(value, parent === "" ? key : `${parent}[${key}]`)
+      flatten(value, parent === "" ? key : `${parent}[${key}]`),
     );
   }
 
@@ -106,14 +103,17 @@ const flatten = (object: unknown, parent = ""): [string, unknown][] => {
 
 const stringifyUrl = (object: unknown) => {
   return flatten(object)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`,
+    )
     .join("&");
-}
+};
 
 const http = {
   get: <T>(
     path: string,
-    searchParams?: Record<string, unknown>
+    searchParams?: Record<string, unknown>,
   ): Promise<T> => {
     if (searchParams && Object.keys(searchParams).length > 0) {
       return request<T>("GET", `${path}?${stringifyUrl(searchParams)}`);
@@ -184,11 +184,11 @@ const createSession = async (params: CreateSessionParams) => {
 
 const listHabits = (): Promise<Habit[]> => {
   return http.get<Habit[]>("/api/v1/habits");
-}
+};
 
 const getHabit = (id: string): Promise<Habit> => {
   return http.get<Habit>(`/api/v1/habits/${id}`);
-}
+};
 
 type CreateHabitParams = {
   readonly rrule: string;
@@ -216,7 +216,6 @@ const removeHabit = (id: string): Promise<void> => {
   return http.delete(`/api/v1/habits/${id}`);
 };
 
-
 export const api = {
   session: {
     create: createSession,
@@ -234,5 +233,5 @@ export const api = {
     create: createHabit,
     remove: removeHabit,
     update: updateHabit,
-  }
+  },
 };

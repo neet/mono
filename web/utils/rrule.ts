@@ -53,16 +53,16 @@ export function toLocaleString(rrule: RRule, _locale = "ja") {
   switch (rrule.freq) {
     case "DAILY":
       localeString += "毎日";
-      break; 
+      break;
     case "WEEKLY":
       localeString += "毎週";
-      break; 
+      break;
     case "MONTHLY":
       localeString += "毎月";
-      break; 
+      break;
     case "YEARLY":
       localeString += "毎年";
-      break; 
+      break;
     default:
       break;
   }
@@ -78,25 +78,25 @@ export function toLocaleString(rrule: RRule, _locale = "ja") {
   switch (rrule.byday) {
     case "SU":
       localeString += "日曜日";
-      break; 
+      break;
     case "MO":
       localeString += "月曜日";
-      break; 
+      break;
     case "TU":
       localeString += "火曜日";
-      break; 
+      break;
     case "WE":
       localeString += "水曜日";
-      break; 
+      break;
     case "TH":
       localeString += "木曜日";
-      break; 
+      break;
     case "FR":
       localeString += "金曜日";
-      break; 
+      break;
     case "SA":
       localeString += "土曜日";
-      break; 
+      break;
     default:
       break;
   }

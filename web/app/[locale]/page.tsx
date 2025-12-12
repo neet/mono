@@ -11,4 +11,3 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
     locale,
   });
 }
-

@@ -5,13 +5,15 @@ import { api } from "@/api";
 import * as RRule from "@/utils/rrule";
 import { Link } from "@/i18n/navigation";
 
-export async function generateMetadata(props: PageProps<"/[locale]/habits">): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/[locale]/habits">,
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ namespace: "pages.habits", locale });
 
   return {
     title: t("habits"),
-  }
+  };
 }
 
 export default async function HabitsPage(_: PageProps<"/[locale]/habits">) {

@@ -9,7 +9,9 @@ import { createActionState } from "@/utils/action_state";
 import { formSchema, FormState } from "./models";
 import { TaskForm } from "./TaskForm";
 
-export const generateMetadata = async (props: PageProps<"/[locale]/tasks/[id]">): Promise<Metadata> => {
+export const generateMetadata = async (
+  props: PageProps<"/[locale]/tasks/[id]">,
+): Promise<Metadata> => {
   const { id } = await props.params;
   const task: Task = await api.tasks.get(id);
 
@@ -18,12 +20,15 @@ export const generateMetadata = async (props: PageProps<"/[locale]/tasks/[id]">)
   };
 };
 
-export default async function TasksIdPage(props: PageProps<"/[locale]/tasks/[id]">) {
+export default async function TasksIdPage(
+  props: PageProps<"/[locale]/tasks/[id]">,
+) {
   const { id, locale } = await props.params;
   const task: Task = await api.tasks.get(id);
 
-  const timestamp = new Intl.DateTimeFormat(locale, { dateStyle: "full" })
-    .format(new Date(task.created_at));
+  const timestamp = new Intl.DateTimeFormat(locale, {
+    dateStyle: "full",
+  }).format(new Date(task.created_at));
 
   const update = async (_: FormState, fd: FormData): Promise<FormState> => {
     "use server";
@@ -56,7 +61,9 @@ export default async function TasksIdPage(props: PageProps<"/[locale]/tasks/[id]
         {task.title}
       </h1>
 
-      <p className="text-stone-600 dark:text-stone-400 text-sm mt-1 font-mono">{timestamp}</p>
+      <p className="text-stone-600 dark:text-stone-400 text-sm mt-1 font-mono">
+        {timestamp}
+      </p>
 
       <TaskForm task={task} updateAction={update} removeAction={remove} />
     </div>

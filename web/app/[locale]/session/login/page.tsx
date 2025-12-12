@@ -10,7 +10,9 @@ import { createActionState } from "@/utils/action_state";
 import { LoginForm } from "./LoginForm";
 import { formSchema, FormState } from "./models";
 
-export async function generateMetadata(props: PageProps<"/[locale]/habits/new">): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/[locale]/habits/new">,
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ namespace: "pages.session_login", locale });
 
@@ -19,7 +21,9 @@ export async function generateMetadata(props: PageProps<"/[locale]/habits/new">)
   };
 }
 
-export default async function LoginPage(props: PageProps<"/[locale]/session/login">) {
+export default async function LoginPage(
+  props: PageProps<"/[locale]/session/login">,
+) {
   const { locale } = await props.params;
 
   const action = async (_: FormState, fd: FormData): Promise<FormState> => {

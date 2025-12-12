@@ -11,7 +11,7 @@ import { Link } from "@/i18n/navigation";
 export type TaskListItemProps = {
   readonly task: Task;
   readonly className?: string;
-}
+};
 
 export const TaskListItem: FC<TaskListItemProps> = async (props) => {
   const { task, className } = props;
@@ -30,39 +30,37 @@ export const TaskListItem: FC<TaskListItemProps> = async (props) => {
     revalidatePath(`/${locale}`);
   };
 
-  const nextStatus = task.status === "pending"
-    ? "completed"
-    : "pending";
+  const nextStatus = task.status === "pending" ? "completed" : "pending";
 
   const deadlineOn = task.deadline_on
-    ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(task.deadline_on))
+    ? new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(
+        new Date(task.deadline_on),
+      )
     : null;
 
   return (
-    <div className={clsx("flex gap-2 items-center", className)} style={{ viewTransitionName: `task-${task.id}` }}>
+    <div
+      className={clsx("flex gap-2 items-center", className)}
+      style={{ viewTransitionName: `task-${task.id}` }}
+    >
       <form action={complete} className="contents">
         <input type="hidden" name="status" value={nextStatus} />
 
-        <button type="submit" className={
-          clsx(
+        <button
+          type="submit"
+          className={clsx(
             "cursor-pointer",
-            (task.status === "completed" || task.status === "canceled") && "bg-emerald-400 dark:bg-emerald-600 rounded border-2 p-0.5",
-            task.status === "pending" && "rounded border-2 p-0.5"
-          )
-        }>
+            (task.status === "completed" || task.status === "canceled") &&
+              "bg-emerald-400 dark:bg-emerald-600 rounded border-2 p-0.5",
+            task.status === "pending" && "rounded border-2 p-0.5",
+          )}
+        >
           <div className="size-4">
-            {
-              task.status === "completed" && <CheckIcon />
-            }
-            {
-              task.status === "canceled" && <XMarkIcon />
-            }
+            {task.status === "completed" && <CheckIcon />}
+            {task.status === "canceled" && <XMarkIcon />}
           </div>
-          
 
-          <div className="sr-only">
-            {t("complete")}
-          </div>
+          <div className="sr-only">{t("complete")}</div>
         </button>
       </form>
 
@@ -71,16 +69,12 @@ export const TaskListItem: FC<TaskListItemProps> = async (props) => {
           {task.title}
         </Link>
 
-        {
-          deadlineOn && (
-            <div className="text-zinc-600 dark:text-zinc-400">
-              <time dateTime={task.deadline_on ?? undefined}>
-                {deadlineOn}
-              </time>
-            </div>
-          )
-        }
+        {deadlineOn && (
+          <div className="text-zinc-600 dark:text-zinc-400">
+            <time dateTime={task.deadline_on ?? undefined}>{deadlineOn}</time>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};

@@ -1,8 +1,8 @@
 import { ViewTransition } from "react";
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 
 import "./globals.css";
 import { routing } from "@/i18n/routing";
@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     default: "mono",
   },
   description: "A task management app only for myself",
-}
+};
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
-};
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function RootLayout(props: LayoutProps<"/[locale]">) {
   const { locale } = await props.params;
@@ -28,7 +28,7 @@ export default async function RootLayout(props: LayoutProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
- 
+
   setRequestLocale(locale);
 
   return (
@@ -44,9 +44,7 @@ export default async function RootLayout(props: LayoutProps<"/[locale]">) {
               <div className="grow h-full">
                 <Banner />
 
-                <main className="px-2 my-4 max-w-lg mx-auto">
-                  {children}
-                </main>
+                <main className="px-2 my-4 max-w-lg mx-auto">{children}</main>
               </div>
             </div>
           </NextIntlClientProvider>

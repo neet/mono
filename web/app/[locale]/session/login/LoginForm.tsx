@@ -11,12 +11,12 @@ import { FormState } from "./models";
 
 export type LoginFormProps = {
   action: (prevState: FormState, formData: FormData) => Promise<FormState>;
-}
+};
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { action } = props;
 
-  const error = useRef<HTMLAnchorElement>(null); 
+  const error = useRef<HTMLAnchorElement>(null);
   const t = useTranslations("pages.session_login");
   const [actionState, formAction] = useActionState(action, {
     type: "pending",
@@ -30,14 +30,22 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   return (
     <form action={formAction} className="my-4 space-y-3">
       <a href="#" ref={error} tabIndex={-1} className="block">
-        {mapFailure(actionState, s => s.error && (
-          <p className="rounded py-2 px-3 dark:bg-red-950 dark:text-red-400">
-            {s.error}
-          </p>
-        ))}
+        {mapFailure(
+          actionState,
+          (s) =>
+            s.error && (
+              <p className="rounded py-2 px-3 dark:bg-red-950 dark:text-red-400">
+                {s.error}
+              </p>
+            ),
+        )}
       </a>
 
-      <Controller id="email" label={t("email")} errors={mapFailure(actionState, s => s.errors.email)}>
+      <Controller
+        id="email"
+        label={t("email")}
+        errors={mapFailure(actionState, (s) => s.errors.email)}
+      >
         {(props) => (
           <input
             {...props}
@@ -51,7 +59,11 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         )}
       </Controller>
 
-      <Controller id="password" label={t("password")} errors={mapFailure(actionState, s => s.errors.password)}>
+      <Controller
+        id="password"
+        label={t("password")}
+        errors={mapFailure(actionState, (s) => s.errors.password)}
+      >
         {(props) => (
           <input
             {...props}
@@ -65,9 +77,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         )}
       </Controller>
 
-      <Button type="submit">
-        {t("login")}
-      </Button>
+      <Button type="submit">{t("login")}</Button>
     </form>
   );
 };

@@ -8,9 +8,9 @@ import { TaskListItem } from "./TaskListItem";
 export type TaskProps = {
   readonly tasks: readonly Task[];
   readonly className?: string;
-}
+};
 
-export const TaskList: FC<TaskProps > = async (props) => {
+export const TaskList: FC<TaskProps> = async (props) => {
   const { tasks, className } = props;
   const t = await getTranslations("components.TaskList");
 
@@ -34,4 +34,4 @@ export const TaskList: FC<TaskProps > = async (props) => {
       )}
     </div>
   );
-}
+};

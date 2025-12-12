@@ -33,9 +33,7 @@ export const Controller: FC<ControllerProps> = (props) => {
       {errors.length > 0 && (
         <ul id={descriptionId} className="text-red-600 dark:text-red-400">
           {errors.map((error, i) => (
-            <li key={i}>
-              {error}
-            </li>
+            <li key={i}>{error}</li>
           ))}
         </ul>
       )}

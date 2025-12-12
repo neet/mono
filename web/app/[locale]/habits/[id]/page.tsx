@@ -8,7 +8,9 @@ import { createActionState } from "@/utils/action_state";
 import { HabitForm } from "./HabitForm";
 import { formSchema, FormState } from "./models";
 
-export const generateMetadata = async (props: PageProps<"/[locale]/habits/[id]">): Promise<Metadata> => {
+export const generateMetadata = async (
+  props: PageProps<"/[locale]/habits/[id]">,
+): Promise<Metadata> => {
   const { id } = await props.params;
   const habit = await api.habits.get(id);
 
@@ -17,14 +19,16 @@ export const generateMetadata = async (props: PageProps<"/[locale]/habits/[id]">
   };
 };
 
-export default async function HabitPage(props: PageProps<"/[locale]/habits/[id]">) {
+export default async function HabitPage(
+  props: PageProps<"/[locale]/habits/[id]">,
+) {
   const { locale, id } = await props.params;
   const habit = await api.habits.get(id);
 
   const update = async (_: FormState, fd: FormData): Promise<FormState> => {
     "use server";
     const values = formSchema.parse(Object.fromEntries(fd.entries()));
-    
+
     try {
       await api.habits.update(id, values);
       revalidatePath(getPathname({ href: `/habits`, locale }));

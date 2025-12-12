@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FC, useActionState } from "react"
+import { FC, useActionState } from "react";
 
 import { Task } from "@/models/task";
 import { Controller } from "@/components/Controller";
@@ -16,7 +16,7 @@ export type TaskFormProps = {
   task: Task;
   updateAction: (formState: FormState, fd: FormData) => Promise<FormState>;
   removeAction: () => Promise<void>;
-}
+};
 
 export const TaskForm: FC<TaskFormProps> = (props) => {
   const { task, removeAction } = props;
@@ -34,14 +34,14 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
 
   return (
     <div className="mt-3 space-y-5">
-      {state.type === "success" && (
-        <Notification>
-          {t("success")}   
-        </Notification>
-      )}
+      {state.type === "success" && <Notification>{t("success")}</Notification>}
 
       <form action={updateAction} className="space-y-4" key={task.updated_at}>
-        <Controller id="status" label={t("status")} errors={mapFailure(state, s => s.errors.status)}>
+        <Controller
+          id="status"
+          label={t("status")}
+          errors={mapFailure(state, (s) => s.errors.status)}
+        >
           {(props) => (
             <select
               {...props}
@@ -56,7 +56,11 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller id="title" label={t("title")} errors={mapFailure(state, s => s.errors.title)}>
+        <Controller
+          id="title"
+          label={t("title")}
+          errors={mapFailure(state, (s) => s.errors.title)}
+        >
           {(props) => (
             <input
               {...props}
@@ -67,7 +71,11 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller id="description" label={t("description")} errors={mapFailure(state, s => s.errors.description)}>
+        <Controller
+          id="description"
+          label={t("description")}
+          errors={mapFailure(state, (s) => s.errors.description)}
+        >
           {(props) => (
             <TextareaAutosize
               {...props}
@@ -78,7 +86,11 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           )}
         </Controller>
 
-        <Controller id="deadline_on" label={t("deadline_on")} errors={mapFailure(state, s => s.errors.deadline_on)}>
+        <Controller
+          id="deadline_on"
+          label={t("deadline_on")}
+          errors={mapFailure(state, (s) => s.errors.deadline_on)}
+        >
           {(props) => (
             <input
               {...props}
@@ -103,5 +115,5 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
 
       <form id="remover" action={removeAction} />
     </div>
-  )
-}
+  );
+};
