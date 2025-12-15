@@ -8,6 +8,7 @@ import { Controller } from "@/components/Controller";
 import { mapFailure } from "@/utils/action_state";
 
 import { FormState } from "./models";
+import { useRouter } from "@/i18n/navigation";
 
 export type LoginFormProps = {
   action: (prevState: FormState, formData: FormData) => Promise<FormState>;
@@ -16,6 +17,7 @@ export type LoginFormProps = {
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { action } = props;
 
+  const router = useRouter();
   const error = useRef<HTMLAnchorElement>(null);
   const t = useTranslations("pages.session_login");
   const [actionState, formAction] = useActionState(action, {
@@ -26,6 +28,12 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
   useEffect(() => {
     error.current?.focus();
   }, [actionState]);
+
+  useEffect(() => {
+    if (actionState.type === "success") {
+      router.push("/");
+    }
+  }, [actionState, router]);
 
   return (
     <form action={formAction} className="my-4 space-y-3">
@@ -44,15 +52,15 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
       <Controller
         id="email"
         label={t("email")}
-        errors={mapFailure(actionState, (s) => s.errors.email)}
+        errors={mapFailure(actionState, (s) => s.errors.email_address)}
       >
         {(props) => (
           <input
             {...props}
-            name="email"
+            name="email_address"
             type="email"
             required
-            defaultValue={actionState.values.email}
+            defaultValue={actionState.values.email_address}
             className="w-full p-2 border-2 rounded"
             autoComplete="email"
           />

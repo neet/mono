@@ -3,7 +3,6 @@ import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import setCookieParser from "set-cookie-parser";
 
-import { redirect } from "@/i18n/navigation";
 import { ApiError } from "@/api";
 import { createActionState } from "@/utils/action_state";
 
@@ -31,7 +30,7 @@ export default async function LoginPage(
     const values = formSchema.parse(Object.fromEntries(fd.entries()));
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/sessions", {
+      const res = await fetch("http://localhost:3000/api/v1/session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,13 +51,10 @@ export default async function LoginPage(
         requestCookies.set(name, value, rest as any);
       }
 
-      redirect({ href: "/", locale });
-      return createActionState(values);
+      return { type: "success", values };
     } catch (error) {
-      if (error instanceof ApiError) {
-        return createActionState(values, error);
-      }
-      throw error;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return createActionState(values, error as any as ApiError<string>);
     }
   };
 
