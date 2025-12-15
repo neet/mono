@@ -103,7 +103,7 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
         </Controller>
 
         <div className="flex justify-end gap-2">
-          <Button type="submit" form="remover">
+          <Button type="submit" formAction={removeAction}>
             {t("remove")}
           </Button>
 
@@ -112,8 +112,6 @@ export const TaskForm: FC<TaskFormProps> = (props) => {
           </Button>
         </div>
       </form>
-
-      <form id="remover" action={removeAction} />
     </div>
   );
 };

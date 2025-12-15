@@ -107,7 +107,7 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
         </div>
 
         <div className="flex justify-end gap-2">
-          <Button type="submit" form="remover">
+          <Button type="submit" formAction={removeAction}>
             {t("remove")}
           </Button>
 
@@ -116,8 +116,6 @@ export const HabitForm: FC<HabitFormProps> = (props) => {
           </Button>
         </div>
       </form>
-
-      <form id="remover" action={removeAction} />
     </div>
   );
 };
