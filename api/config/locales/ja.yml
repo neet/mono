@@ -1,6 +1,10 @@
 ja:
   sessions:
     invalid: メールアドレスまたはパスワードが間違っています
+    rate_limit: お時間を置いてもう一度お試しください
+  passwords:
+    invalid: パスワードが一致しませんでした
+    expired: パスワードをリセットするリンクの有効期限が切れました
   activerecord:
     models:
       habit: 習慣

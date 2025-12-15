@@ -41,14 +41,8 @@ module Mono
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # `bin/rails g authentication` のやり方では session store を使わないっぽい
     # https://guides.rubyonrails.org/api_app.html
-    config.session_store :cookie_store,
-      key: "_mono_session",
-      expire_after: 14.days,
-      secure: Rails.env.production?,
-      httponly: true,
-      same_site: :lax
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use config.session_store, config.session_options
   end
 end

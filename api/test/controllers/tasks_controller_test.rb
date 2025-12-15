@@ -3,7 +3,7 @@ require "test_helper"
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @task = tasks(:one)
-    post api_v1_sessions_path, params: { email: "one@example.com", password: "password" }
+    post api_v1_session_path, params: { email_address: "one@example.com", password: "password" }
   end
 
   test "should get index" do

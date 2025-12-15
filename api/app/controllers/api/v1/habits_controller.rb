@@ -3,7 +3,7 @@ class Api::V1::HabitsController < ApplicationController
 
   # GET /habits
   def index
-    @habits = current_user.habits
+    @habits = Current.user.habits
 
     render json: @habits
   end
@@ -15,7 +15,7 @@ class Api::V1::HabitsController < ApplicationController
 
   # POST /habits
   def create
-    @habit = current_user.habits.new(habit_params)
+    @habit = Current.user.habits.new(habit_params)
 
     if @habit.save
       render json: @habit, status: :created
@@ -41,7 +41,7 @@ class Api::V1::HabitsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_habit
-      @habit = current_user.habits.find(params.expect(:id))
+      @habit = Current.user.habits.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
