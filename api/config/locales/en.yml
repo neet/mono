@@ -1,6 +1,10 @@
 en:
   sessions:
     invalid: Invalid email or password
+    rate_limit: Try again later
+  passwords:
+    invalid: Passwords did not match.
+    expired: Password reset link is invalid or has expired.
   activerecord:
     models:
       habit: Habit

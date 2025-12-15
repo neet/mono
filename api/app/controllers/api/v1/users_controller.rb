@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: [ :create ]
+  allow_unauthenticated_access only: [ :create ]
 
   def create
     user = User.new(user_params)
@@ -13,6 +13,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email_address, :password)
   end
 end

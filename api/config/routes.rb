@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :sessions, only: [ :create, :destroy ]
+      resource :session, only: [ :create, :destroy ]
+      resources :passwords, only: [ :create, :update ], param: :token
       resources :users, only: [ :create, :show ]
       resources :tasks
       resources :habits
