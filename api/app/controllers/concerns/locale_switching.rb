@@ -1,6 +1,10 @@
 # https://guides.rubyonrails.org/i18n.html#choosing-an-implied-locale
-class ApplicationController < ActionController::API
-  around_action :switch_locale
+module LocaleSwitching
+  extend ActiveSupport::Concern
+
+  included do
+    around_action :switch_locale
+  end
 
   def switch_locale(&action)
     locale = extract_locale_from_accept_language_header
