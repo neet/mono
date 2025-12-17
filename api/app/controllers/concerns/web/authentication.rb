@@ -1,4 +1,4 @@
-module Authentication
+module Web::Authentication
   extend ActiveSupport::Concern
 
   included do

@@ -1,9 +1,10 @@
-class Api::V1::HabitsController < ApplicationController
+class Api::V1::HabitsController < Api::BaseController
+  before_action :doorkeeper_authorize!
   before_action :set_habit, only: %i[ show update destroy ]
 
   # GET /habits
   def index
-    @habits = Current.user.habits
+    @habits = current_user.habits
 
     render json: @habits
   end
@@ -15,7 +16,7 @@ class Api::V1::HabitsController < ApplicationController
 
   # POST /habits
   def create
-    @habit = Current.user.habits.new(habit_params)
+    @habit = current_user.habits.new(habit_params)
 
     if @habit.save
       render json: @habit, status: :created
@@ -41,7 +42,7 @@ class Api::V1::HabitsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_habit
-      @habit = Current.user.habits.find(params.expect(:id))
+      @habit = current_user.habits.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.

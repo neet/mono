@@ -1,9 +1,10 @@
-class Api::V1::TasksController < ApplicationController
+class Api::V1::TasksController < Api::BaseController
+  before_action :doorkeeper_authorize!
   before_action :set_task, only: %i[ show update destroy ]
 
   # GET /tasks
   def index
-    tasks = Current.user.tasks
+    tasks = current_user.tasks
 
     if params[:status]
       tasks = tasks.where(status: params[:status])
@@ -21,7 +22,7 @@ class Api::V1::TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = Current.user.tasks.new(task_params)
+    @task = current_user.tasks.new(task_params)
 
     if @task.save
       render json: @task, status: :created
@@ -47,7 +48,7 @@ class Api::V1::TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Current.user.tasks.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

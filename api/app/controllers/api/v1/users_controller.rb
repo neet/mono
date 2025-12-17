@@ -1,5 +1,5 @@
-class Api::V1::UsersController < ApplicationController
-  allow_unauthenticated_access only: [ :create ]
+class Api::V1::UsersController < Api::BaseController
+  before_action :doorkeeper_authorize!
 
   def create
     user = User.new(user_params)

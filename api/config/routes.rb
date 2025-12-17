@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   use_doorkeeper
+
   namespace :api do
     namespace :v1 do
-      resource :session, only: [ :create, :destroy ]
-      resources :passwords, only: [ :create, :update ], param: :token
       resources :users, only: [ :create, :show ]
       resources :tasks
       resources :habits
     end
+  end
+
+  namespace :web do
+    resource :session, only: [ :create, :destroy ]
+    resources :passwords, only: [ :create, :update ], param: :token
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

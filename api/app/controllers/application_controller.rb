@@ -1,6 +1,5 @@
+# https://guides.rubyonrails.org/i18n.html#choosing-an-implied-locale
 class ApplicationController < ActionController::API
-  include ActionController::Cookies
-  include Authentication
   around_action :switch_locale
 
   def switch_locale(&action)
