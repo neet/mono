@@ -44,5 +44,8 @@ module Mono
     # `bin/rails g authentication` のやり方では session store を使わないっぽい
     # https://guides.rubyonrails.org/api_app.html
     config.middleware.use ActionDispatch::Cookies
+
+    # Doorkeeperの結果を表示するのに必要
+    config.middleware.use ActionDispatch::Flash
   end
 end

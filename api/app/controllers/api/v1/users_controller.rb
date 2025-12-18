@@ -10,6 +10,15 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
+  def me
+    render json: {
+      "sub" => current_user.id.to_s,
+      "email" => current_user.email_address,
+      "name" => current_user.email_address
+      # "email_verified" => false
+    }
+  end
+
   private
 
   def user_params
