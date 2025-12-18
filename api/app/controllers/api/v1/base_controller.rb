@@ -1,4 +1,4 @@
-class Api::BaseController < ActionController::API
+class Api::V1::BaseController < ActionController::API
   include LocaleSwitching
 
   # https://doorkeeper.gitbook.io/guides/ruby-on-rails/protecting-your-resources#authenticated-resource-owner

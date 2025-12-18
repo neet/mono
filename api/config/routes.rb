@@ -7,11 +7,11 @@ Rails.application.routes.draw do
       resources :tasks
       resources :habits
     end
-  end
 
-  namespace :web do
-    resource :session, only: [ :create, :destroy ]
-    resources :passwords, only: [ :create, :update ], param: :token
+    namespace :web do
+      resource :session, only: [ :create, :destroy ]
+      resources :passwords, only: [ :create, :update ], param: :token
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

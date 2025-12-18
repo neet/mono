@@ -1,4 +1,4 @@
-class Api::V1::UsersController < Api::BaseController
+class Api::V1::UsersController < Api::V1::BaseController
   before_action :doorkeeper_authorize!
 
   def create

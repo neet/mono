@@ -1,4 +1,4 @@
-class Api::V1::TasksController < Api::BaseController
+class Api::V1::TasksController < Api::V1::BaseController
   before_action :doorkeeper_authorize!
   before_action :set_task, only: %i[ show update destroy ]
 

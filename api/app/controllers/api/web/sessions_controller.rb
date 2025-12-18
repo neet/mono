@@ -1,4 +1,4 @@
-class Web::SessionsController < Web::BaseController
+class Api::Web::SessionsController < Api::Web::BaseController
   allow_unauthenticated_access only: [ :create ]
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> {
     render json: { "error" => I18n.t("sessions.rate_limit") }, status: :too_many_requests

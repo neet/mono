@@ -1,4 +1,4 @@
-class Api::V1::HabitsController < Api::BaseController
+class Api::V1::HabitsController < Api::V1::BaseController
   before_action :doorkeeper_authorize!
   before_action :set_habit, only: %i[ show update destroy ]
 
