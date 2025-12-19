@@ -12,7 +12,7 @@ export const formSchema = z.object({
 
 export async function POST(
   req: NextRequest,
-  _ctx: RouteContext<"/[locale]/session/login/api">,
+  _ctx: RouteContext<"/internal/session">,
 ) {
   const fd = await req.formData();
   const values = formSchema.parse(Object.fromEntries(fd.entries()));
