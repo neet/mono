@@ -12,7 +12,7 @@ export const formSchema = z.object({
 
 export async function POST(
   req: NextRequest,
-  _ctx: RouteContext<"/api/session">,
+  _ctx: RouteContext<"/[locale]/session/login/api">,
 ) {
   const fd = await req.formData();
   const values = formSchema.parse(Object.fromEntries(fd.entries()));
@@ -64,8 +64,6 @@ export async function POST(
 
     return res;
   } catch {
-    return {
-      error: "Failed to login",
-    };
+    return NextResponse.json({ error: "Failed to login" }, { status: 500 });
   }
 }

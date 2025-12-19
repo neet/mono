@@ -1,16 +1,20 @@
-import { betterAuth } from "better-auth";
-import { genericOAuth } from "better-auth/plugins";
 import assert from "node:assert";
+
+import { betterAuth } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
+import { genericOAuth } from "better-auth/plugins";
+import { Pool } from "pg";
 
 assert(process.env.OAUTH_CLIENT_ID);
 assert(process.env.OAUTH_CLIENT_SECRET);
 
 export const auth = betterAuth({
-  account: {
-    // https://github.com/better-auth/better-auth/issues/6252
-    updateAccountOnSignIn: false,
-  },
+  basePath: "/internal/auth",
+  database: new Pool({
+    connectionString: process.env.DATABASE_URL,
+  }),
   plugins: [
+    nextCookies(),
     genericOAuth({
       config: [
         {
