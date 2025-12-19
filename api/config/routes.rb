@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
+  use_doorkeeper
+
   namespace :api do
     namespace :v1 do
-      resource :session, only: [ :create, :destroy ]
-      resources :passwords, only: [ :create, :update ], param: :token
-      resources :users, only: [ :create, :show ]
+      resources :users, only: [ :create, :show ] do
+        collection do
+          get :me
+        end
+      end
       resources :tasks
       resources :habits
+    end
+
+    namespace :web do
+      resource :session, only: [ :create, :destroy ]
+      resources :passwords, only: [ :create, :update ], param: :token
     end
   end
 

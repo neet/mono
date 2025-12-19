@@ -1,5 +1,5 @@
-class Api::V1::UsersController < ApplicationController
-  allow_unauthenticated_access only: [ :create ]
+class Api::V1::UsersController < Api::V1::BaseController
+  before_action :doorkeeper_authorize!
 
   def create
     user = User.new(user_params)
@@ -8,6 +8,15 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: user.errors.to_hash(true), status: :unprocessable_entity
     end
+  end
+
+  def me
+    render json: {
+      "sub" => current_user.id.to_s,
+      "email" => current_user.email_address,
+      "name" => current_user.email_address
+      # "email_verified" => false
+    }
   end
 
   private

@@ -1,9 +1,12 @@
-import { cookies } from "next/headers";
+import { APIError } from "better-auth";
+import { notFound } from "next/navigation";
+import { headers } from "next/headers";
+import { getLocale } from "next-intl/server";
+
 import { Task, TaskStatus } from "./models/task";
 import { Habit } from "./models/habit";
-import { notFound } from "next/navigation";
-import { redirect } from "@/i18n/navigation";
-import { getLocale } from "next-intl/server";
+import { redirect } from "./i18n/navigation";
+import { auth } from "./lib/auth";
 
 export class ApiError<T extends string | number | symbol> {
   error?: string;
@@ -19,6 +22,27 @@ export class ApiError<T extends string | number | symbol> {
   }
 }
 
+const getAccessToken = async (): Promise<string> => {
+  const locale = await getLocale();
+
+  try {
+    const { accessToken } = await auth.api.getAccessToken({
+      body: {
+        providerId: "mono",
+      },
+      headers: await headers(),
+    });
+
+    return accessToken;
+  } catch (error) {
+    if (error instanceof APIError && error.statusCode === 401) {
+      throw redirect({ href: "/session/login", locale });
+    } else {
+      throw error;
+    }
+  }
+};
+
 const request = async <T>(
   method: string,
   path: string,
@@ -26,7 +50,7 @@ const request = async <T>(
   body?: Record<string, unknown>,
 ): Promise<T> => {
   const locale = await getLocale();
-  const requestCookies = await cookies();
+  const accessToken = await getAccessToken();
 
   let url = new URL(path, "http://localhost:3000").toString();
 
@@ -38,23 +62,17 @@ const request = async <T>(
     url += "?" + searchParams.toString();
   }
 
-  const headers = new Headers({
-    Cookie: requestCookies.toString(),
-    "Accept-Language": locale,
-  });
-
-  if (body) {
-    headers.append("Content-Type", "application/json");
-  }
-
   const init: RequestInit = {
     method,
-    headers,
-    credentials: "include",
+    headers: new Headers({
+      Authorization: `Bearer ${accessToken}`,
+      "Accept-Language": locale,
+    }),
   };
 
   if (body) {
     init.body = JSON.stringify(body);
+    (init.headers as Headers).append("Content-Type", "application/json");
   }
 
   const res = await fetch(url, init);
@@ -173,15 +191,6 @@ const removeTask = (id: string): Promise<void> => {
   return http.delete(`/api/v1/tasks/${id}`);
 };
 
-type CreateSessionParams = {
-  readonly email: string;
-  readonly password: string;
-};
-
-const createSession = async (params: CreateSessionParams) => {
-  return http.post("/api/v1/sessions", params);
-};
-
 const listHabits = (): Promise<Habit[]> => {
   return http.get<Habit[]>("/api/v1/habits");
 };
@@ -217,9 +226,6 @@ const removeHabit = (id: string): Promise<void> => {
 };
 
 export const api = {
-  session: {
-    create: createSession,
-  },
   tasks: {
     get: getTask,
     list: listTasks,
