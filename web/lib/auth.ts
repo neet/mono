@@ -19,9 +19,9 @@ export const auth = betterAuth({
       config: [
         {
           providerId: "mono",
-          authorizationUrl: "http://localhost:3000/oauth/authorize",
-          tokenUrl: "http://localhost:3000/oauth/token",
-          userInfoUrl: "http://localhost:3000/api/v1/users/me",
+          authorizationUrl: `${process.env.API_URL}/oauth/authorize`,
+          tokenUrl: `${process.env.API_URL}/oauth/token`,
+          userInfoUrl: `${process.env.API_URL}/api/v1/users/me`,
           clientId: process.env.OAUTH_CLIENT_ID,
           clientSecret: process.env.OAUTH_CLIENT_SECRET,
           scopes: ["read", "write"],
