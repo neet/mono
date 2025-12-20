@@ -1,75 +1,83 @@
 use crate::models::*;
 use reqwest;
+use reqwest::header::{AUTHORIZATION, CONTENT_TYPE};
 use serde::Serialize;
-use serde_json;
-use std::env;
-use std::fmt;
 
-#[derive(Debug)]
-struct NoAccessTokenError {}
+#[derive(Serialize, Debug)]
+pub struct ListTasksParams {
+    pub status: Option<String>,
+}
 
-impl fmt::Display for NoAccessTokenError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "Access token is not provided. You need to set MONO_ACCESS_TOKEN in your environment."
-        )
+#[derive(Serialize, Debug)]
+pub struct CreateTaskParams {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub title: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+}
+
+pub struct ApiClient {
+    base_url: String,
+    client: reqwest::Client,
+}
+
+impl ApiClient {
+    pub fn new(base_url: &str, access_token: Option<&str>) -> Result<ApiClient, reqwest::Error> {
+        let mut headers = reqwest::header::HeaderMap::new();
+
+        headers.insert(CONTENT_TYPE, "application/json".parse().unwrap());
+
+        if let Some(access_token) = access_token {
+            headers.insert(
+                AUTHORIZATION,
+                format!("Bearer {}", access_token).parse().unwrap(),
+            );
+        }
+
+        let client = reqwest::Client::builder()
+            .default_headers(headers)
+            .build()?;
+
+        return Ok(ApiClient {
+            base_url: base_url.to_string(),
+            client,
+        });
+    }
+
+    pub async fn list_tasks(&self, params: &ListTasksParams) -> Result<Vec<Task>, reqwest::Error> {
+        self.client
+            .get(format!("{}/api/v1/tasks", self.base_url))
+            .query(params)
+            .send()
+            .await?
+            .json::<Vec<Task>>()
+            .await
+    }
+
+    pub async fn show_task(&self, id: &str) -> Result<Task, reqwest::Error> {
+        self.client
+            .get(format!("{}/api/v1/tasks/{}", self.base_url, id))
+            .send()
+            .await?
+            .json::<Task>()
+            .await
+    }
+
+    pub async fn create_task(&self, params: &CreateTaskParams) -> Result<Task, reqwest::Error> {
+        self.client
+            .post(format!("{}/api/v1/tasks", self.base_url))
+            .json(params)
+            .send()
+            .await?
+            .json::<Task>()
+            .await
+    }
+
+    pub async fn remove_task(&self, id: &str) -> Result<(), reqwest::Error> {
+        self.client
+            .delete(format!("{}/api/v1/tasks/{}", self.base_url, id))
+            .send()
+            .await?;
+        Ok(())
     }
 }
-
-impl std::error::Error for NoAccessTokenError {}
-
-async fn request(
-    method: reqwest::Method,
-    path: &str,
-) -> Result<reqwest::Response, Box<dyn std::error::Error>> {
-    let client = reqwest::Client::new();
-    let url = format!("https://mono.neet.love{}", path);
-
-    let Ok(access_token) = env::var("MONO_ACCESS_TOKEN") else {
-        return Result::Err(Box::new(NoAccessTokenError {}));
-    };
-
-    let builder = client
-        .request(method, url)
-        .header("Accept", "application/json")
-        .header("Authorization", format!("Bearer {}", access_token));
-
-    let res = builder.send().await?.error_for_status()?;
-
-    Result::Ok(res)
-}
-
-async fn get<T: Into<reqwest::Body>>(
-    path: &str,
-) -> Result<reqwest::Response, Box<dyn std::error::Error>> {
-    request(reqwest::Method::GET, path).await
-}
-
-// async fn post<T: Into<reqwest::Body>>(
-//     path: &str,
-//     body: Option<T>,
-// ) -> Result<reqwest::Response, Box<dyn std::error::Error>> {
-//     request(reqwest::Method::POST, path, body).await
-// }
-//
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-pub async fn list_tasks() -> Result<Vec<Task>, Box<dyn std::error::Error>> {
-    let res: Vec<Task> = get::<&str>("/api/v1/tasks").await?.json().await?;
-    Result::Ok(res)
-}
-//
-// #[derive(Serialize, Debug)]
-// struct CreateTaskParams {
-//     title: Option<String>,
-//     description: Option<String>,
-// }
-//
-// pub async fn create_task(
-//     params: CreateTaskParams,
-// ) -> Result<Vec<Task>, Box<dyn std::error::Error>> {
-//     let body = serde_json::to_string(&params).unwrap();
-//     let res: Vec<Task> = post("/api/v1/tasks", Some(&body)).await?.json().await?;
-//     Result::Ok(res)
-// }
