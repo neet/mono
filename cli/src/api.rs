@@ -16,6 +16,16 @@ pub struct CreateTaskParams {
     pub description: Option<String>,
 }
 
+#[derive(Serialize, Debug)]
+pub struct UpdateTaskParams {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub title: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub status: Option<String>,
+}
+
 pub struct ApiClient {
     base_url: String,
     client: reqwest::Client,
@@ -66,6 +76,20 @@ impl ApiClient {
     pub async fn create_task(&self, params: &CreateTaskParams) -> Result<Task, reqwest::Error> {
         self.client
             .post(format!("{}/api/v1/tasks", self.base_url))
+            .json(params)
+            .send()
+            .await?
+            .json::<Task>()
+            .await
+    }
+
+    pub async fn update_task(
+        &self,
+        id: &str,
+        params: &UpdateTaskParams,
+    ) -> Result<Task, reqwest::Error> {
+        self.client
+            .put(format!("{}/api/v1/tasks/{}", self.base_url, id))
             .json(params)
             .send()
             .await?

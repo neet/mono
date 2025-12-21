@@ -1,12 +1,12 @@
 mod api;
 mod models;
+mod presenter;
 
 use api::ApiClient;
 use clap::{Parser, Subcommand};
+use presenter::Presenter;
 use std::env;
 use tokio;
-
-use crate::models::TaskStatus;
 
 #[derive(Parser)]
 #[command(version, about, long_about=None)]
@@ -38,6 +38,15 @@ enum TasksCommands {
         #[arg(short, long)]
         description: Option<String>,
     },
+    Update {
+        id: String,
+        #[arg(short, long)]
+        title: Option<String>,
+        #[arg(short, long)]
+        description: Option<String>,
+        #[arg(short, long)]
+        status: Option<String>,
+    },
     Remove {
         id: String,
     },
@@ -56,22 +65,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             Some(TasksCommands::List { status }) => {
                 let params = api::ListTasksParams { status };
                 let tasks = api.list_tasks(&params).await?;
-
-                for task in &tasks {
-                    let symbol = match task.status {
-                        TaskStatus::Completed => "[x]",
-                        _ => "[ ]",
-                    };
-                    println!("{} {} (#{})", symbol, task.title, task.id);
-                }
+                println!("{}", tasks.present());
             }
             Some(TasksCommands::Show { id }) => {
                 let task = api.show_task(&id).await?;
-                let symbol = match task.status {
-                    TaskStatus::Completed => "[x]",
-                    _ => "[ ]",
-                };
-                println!("{} {} (#{})", symbol, task.title, task.id);
+                println!("{}", task.present());
             }
             Some(TasksCommands::Create { title, description }) => {
                 let params = api::CreateTaskParams {
@@ -79,7 +77,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     description,
                 };
                 let task = api.create_task(&params).await?;
-                println!("{}", task.title);
+                println!("{}", task.present());
+            }
+            Some(TasksCommands::Update {
+                id,
+                title,
+                description,
+                status,
+            }) => {
+                let params = api::UpdateTaskParams {
+                    title,
+                    description,
+                    status,
+                };
+                let task = api.update_task(&id, &params).await?;
+                println!("{}", task.present());
             }
             Some(TasksCommands::Remove { id }) => {
                 api.remove_task(&id).await?;
